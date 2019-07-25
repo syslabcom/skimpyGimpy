@@ -2,10 +2,10 @@
 Railroad repeat
 """
 
-import Configuration
+from . import Configuration
 from skimpyGimpy import bdf
-import Literal
-from Sequence import Sequence
+from . import Literal
+from .Sequence import Sequence
 
 class Repeat(Literal.LiteralBase):
     def __init__(self, thing, canvas, config=None):
@@ -68,7 +68,7 @@ def test(fontdir=".", outfile="/tmp/out.png"):
     r = Repeat(l, c)
     r.drawAt(100, -100)
     c.dumpToPNG(outfile)
-    print "test output to", outfile
+    print("test output to", outfile)
     
 if __name__=="__main__":
     test()

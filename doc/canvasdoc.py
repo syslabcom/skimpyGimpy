@@ -32,22 +32,22 @@ def show(filename0, code):
     D["outfile"] = filename
     prog = showtemplate % D
     exec(prog)
-    print """
+    print("""
     <table border width="50%">
     <tr><th>Program</th></tr>
     <tr><td>
-    """
-    print "<pre>%s</pre>"%qq(prog)
-    print """
+    """)
+    print("<pre>%s</pre>"%qq(prog))
+    print("""
     </td></tr>
     <tr><th>generated image <code>%s</code></th></tr>
     <tr><th>
     <tr><th> <img src="%s"> </th></tr>
     </table><br>
-    """ % (filename, filename)
+    """ % (filename, filename))
 
 
-print r"""
+print(r"""
 <html>
 <head>
 <title>
@@ -141,7 +141,7 @@ project page and click on the download link.</a>
 
 The following example generates a "hello world" image file and demonstrates
 the use of colors and generation of text.
-"""
+""")
 
 show("HelloWorld.png", """
 # set the foreground color to a light blue
@@ -161,7 +161,7 @@ c.setFont("propell", 2.0, 1.3)
 c.addText(0,0, "Hello PNG World")
 """)
 
-print """
+print("""
 The first two lines of this example import the <code>canvas</code> module
 and create a <code>Canvas</code> object.  The <code>Canvas</code> object
 <code>c</code> encapsulates all information drawn to the image as well as
@@ -199,7 +199,7 @@ is left out the background of the image will be <b>transparent</b>;
 so, for example, if the image is
 in a web page it will show whatever is behind it on the page, as
 demonstrated in the following example.
-"""
+""")
 
 show("TransparentWorld.png", """
 # set the foreground color to a light blue
@@ -218,7 +218,7 @@ c.setFont("propell", 2.0, 1.3)
 c.addText(0,0, "Hello Transparent PNG World")
 """)
 
-print """
+print("""
 <h3>Circles and Coordinates</h3>
 
 The following example draws a number of circles
@@ -230,7 +230,7 @@ which draws a circle of radius <code>radius</code> centered at
 <code>(centerX, centerY)</code> using the current foreground color.
 The example also demonstrates canvas coordinates
 and painting over objects.
-"""
+""")
 
 show("Coords.png", """
 # set up the font as cursive, scale 1.0
@@ -280,7 +280,7 @@ c.setColor(0,0,0)
 c.addText(50,-50, "(50,-50)") # black text
 """)
 
-print """
+print("""
 Please note the following features of the canvas demonstrated above
 <ul>
 <li> The canvas uses standard cartesian (x-right, y-up) coordinates.
@@ -324,7 +324,7 @@ right justified respectively with respect to the <code>(x,y)</code>
 location.
 <p>
 The following example exercises various font options.
-"""
+""")
 
 show("Fonts.png", """
 # name some fonts
@@ -350,7 +350,7 @@ c.setFont("propell", 2.5)
 c.addText(0,40, "larger")
 """)
 
-print """
+print("""
 Note that the <code>y</code> coordinate for drawing text always
 refers to the "base line" for the text.
 
@@ -364,7 +364,7 @@ draws a rectangle using the current forground color starting
 at lower left corner <code>(llx,lly)</code> and extend for
 width <code>width</code> and height <code>height</code>.
 The following example draws a green rectangle over a red one.
-"""
+""")
 
 show("Rects.png", """
 c.setBackgroundColor(255,255,100)
@@ -381,7 +381,7 @@ c.addText(150,5,"(0,0) 150x5")
 c.rightJustifyText(20,130,"(20,-30) 10x160")
 """)
 
-print """
+print("""
 It is often very convenient to "shift" or "rotate"
 the coordinate system when rendering graphics.  To support
 such coordinate transformation the canvas provides the
@@ -393,7 +393,7 @@ rotate(degrees)
 </pre>
 The following example generates two sets of rectangles like the
 previous example, one unrotated, and one rotated by 135 degrees.
-"""
+""")
 
 
 show("RotRects.png", """
@@ -420,11 +420,11 @@ c.setColor(0,0,0)
 c.addText(0,0,"(0,0) rotated")
 """)
 
-print """
+print("""
 Similarly the following example draws two pairs of rectangles,
 one translated to the alternate coordinate system with origin
 at (-50,50).
-"""
+""")
 
 show("ShiftRects.png", """
 c.setBackgroundColor(255,255,100)
@@ -450,7 +450,7 @@ c.setColor(0,0,0)
 c.addText(0,0,"(0,0)")
 """)
 
-print """
+print("""
 Furthermore multiple rotations and translations can be
 combined as demonstrated below.
 
@@ -469,7 +469,7 @@ c.restoreState()
 For example the following example saves and restores the state
 in order to return to the default coordinate transform after a rotation
 and a translation.
-"""
+""")
 
 show("State.png", """
 c.setBackgroundColor(255,255,100)
@@ -505,7 +505,7 @@ c.setColor(0,0,0)
 c.addText(0,0,"(0,0)")
 """)
 
-print """
+print("""
 
 <h3>Filling Polygons</h3>
 
@@ -515,7 +515,7 @@ c.fillPolygon(pointSequence)
 </pre>
 Fills a closed polygonal region bounded by the line segments between successive vertices of the point
 sequence with the current color.
-"""
+""")
 
 show("fillPoly.png", """
 c.setBackgroundColor(255,255,100)
@@ -524,7 +524,7 @@ pointSequence = [ (0,0), (50,50), (75,0), (100,25), (50,-50)]
 c.fillPolygon(pointSequence)
 """)
 
-print """
+print("""
 
 <h3>Drawing lines</h3>
 
@@ -543,7 +543,7 @@ The line cap specifies a distance to overshoot the end of a line
 segment.  The following example demonstrates these methods by
 drawing a thin blue line on a thick red line.
 
-"""
+""")
 
 
 show("Line.png", """
@@ -562,7 +562,7 @@ c.setWidth(2)
 c.addLine( (0,0), (100,100) )
 """)
 
-print """
+print("""
 The canvas object also has the method
 <pre>
 c.addLines(points)
@@ -573,7 +573,7 @@ is not specified or a polygon if <code>closed=True</code>
 built from the <code>points</code> sequence.  For example
 the following draws a blue triangle over a red
 zigzag.
-"""
+""")
 
 show("Lines.png", """
 c.setBackgroundColor(255,255,100)
@@ -593,7 +593,7 @@ triangle = [ (0,0), (50,50), (100,0) ]
 c.addLines( triangle, closed=True )
 """)
 
-print """
+print("""
 
 <h3>Filling regions</h3>
 
@@ -608,7 +608,7 @@ at the <code>(x,y)</code> position provided and grow until the first
 change in color in the image, as demonstrated in the following example
 which fills the lower part of the triangle up to the zigzag.
 
-"""
+""")
 
 
 show("fill1.png", """
@@ -633,12 +633,12 @@ c.setColor(0,255,255)
 c.growFill(20,10)
 """)
 
-print """
+print("""
 If the <code>stopColorRGB</code> is specified the fill will proceed until
 a pixel with the given <code>stopColorRGB</code> is encountered.  For example
 the following fill stops only at the triangle, painting over the part
 of the zigzag that is inside the triangle.
-"""
+""")
 
 show("fill2.png", """
 c.setBackgroundColor(255,255,100)
@@ -662,7 +662,7 @@ c.setColor(0,255,255)
 c.growFill(20,10, stopColorRGB=(0,0,255))
 """)
 
-print """
+print("""
 
 <h3>Specifying the view region (cropping)</h3>
 
@@ -678,7 +678,7 @@ and y values <code>miny..maxy</code>.
 <p>
 For example the following shows the previous image on a larger
 background.
-"""
+""")
 
 show("crop1.png", """
 c.setBackgroundColor(255,255,100)
@@ -703,10 +703,10 @@ c.growFill(20,10, stopColorRGB=(0,0,255))
 c.crop(-20,-20, 120,70)
 """)
 
-print """
+print("""
 The following shows only the right side of the previous image
 with a transparent background.
-"""
+""")
 
 show("crop2.png", """
 # thick red zigzag
@@ -729,7 +729,7 @@ c.growFill(20,10, stopColorRGB=(0,0,255))
 c.crop(50,-20, 120,70)
 """)
 
-print """
+print("""
 <h3>Javascript mouse tracking</h3>
 
 The canvas object encapsulates a number of methods
@@ -780,7 +780,7 @@ The example shown below generates an image with associated
 callback strings and also prints and HTML fragment which
 embeds the image and the appropriate Javascript references
 inside an HTML file.
-"""
+""")
 
 JAVASCRIPT_EXAMPLE = '''
 from skimpyGimpy import canvas
@@ -850,20 +850,20 @@ function mouseExampleCallback(alertString, x, y, event, image) {
 """
 print HTML_FRAGMENT
 '''
-print """
+print("""
 <pre>%s</pre>
-""" % qq(JAVASCRIPT_EXAMPLE)
+""" % qq(JAVASCRIPT_EXAMPLE))
 
-print """
+print("""
 Below the HTML code generated by the example is embedded in the present
 document.  <em>Drag the mouse over the image to see the mouse events
 reported below the image (on supported browsers, with Javascript enabled).</em>
 <center>
-"""
+""")
 exec(JAVASCRIPT_EXAMPLE)
-print "</center>"
+print("</center>")
 
-print """
+print("""
 Note that the generated data structures make reference to the callback function
 and the image object and therefore must <em>follow</em> the definition of both
 the image and the callback function.
@@ -877,9 +877,9 @@ region under the mouse, <code>(x,y)</code> provide the coordinates for
 the pixel in the image under the mouse, <code>event</code> is the
 Javascript event object, and <code>image</code> is the HTML/DOM image
 object.
-"""
+""")
 
-print """
+print("""
 <h3>Bar Chart Example</h3>
 
 As an extended demonstration of how to use the canvas
@@ -890,17 +890,17 @@ Please look at the source of this module for more information.
 An example bar chart.
 <br>
 <center> <img src="barchart.png"> </center>
-"""
+""")
 from skimpyGimpy import pngBarChart
 pngBarChart.test("barchart.png")
 
-print """
+print("""
 
 </body>
 </html>
-"""
+""")
 
-print """
+print("""
 <h3>Entity Relationship Model Example</h3>
 
 The <code>skimpyGimpy.erd</code> package demonstrates the
@@ -911,9 +911,9 @@ database design diagrams such as the following
 <br>
 Please see the source files for this package for more
 information.
-"""
+""")
 
-print """
+print("""
 <h3>Railroad Diagrams</h3>
 
 The <code>skimpyGimpy.railroad</code> package demonstrates the
@@ -925,5 +925,5 @@ such as the following
 <br>
 Please see the source files for this package for more
 information.
-"""
+""")
 

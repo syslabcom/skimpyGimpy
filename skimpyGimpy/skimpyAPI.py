@@ -17,7 +17,7 @@ class Wave:
         this.indexFile = indexFile
     def data(this, toFilePath=None):
         "return the wave representation for the word, write it to the path if provided"
-        import waveTools
+        from . import waveTools
         index = waveTools.LettersIndex()
         index.loadZip(this.indexFile)
         instring = this.word.lower()
@@ -35,7 +35,7 @@ def hexColorTupleFromString(s):
     if s.startswith("0x"):
         s = s[2:]
     if len(s)!=6:
-        raise ValueError, "hex color specifications must have 6 hex digits: "+repr(s)
+        raise ValueError("hex color specifications must have 6 hex digits: "+repr(s))
     d1 = s[0:2]
     d2 = s[2:4]
     d3 = s[4:6]
@@ -60,13 +60,13 @@ class Png:
             this.fontpath = fontpath
         this.hcolor = hexColorTupleFromString(this.color)
     def data(this, toFilePath=None):
-        import bdf
+        from . import bdf
         "return the PNG representation for the word, write it to the path if provided"
         if this.fontpath is not None:
             fn = bdf.font()
             fn.loadFilePath(this.fontpath)
         else:
-            import cursive # this is an expensive import
+            from . import cursive # this is an expensive import
             fn = cursive.CursiveFont
         p = bdf.pixelation(fn, this.word)
         #pr "hcolor is", this.hcolor
@@ -87,7 +87,7 @@ class Pre:
             this.color = color
             
     def data(this, toFilePath=None):
-        import skimpyGimpy
+        from . import skimpyGimpy
         g = skimpyGimpy.gimpyString(this.word)
         g.scale = this.scale
         g.speckleFactor = this.speckle
@@ -143,14 +143,14 @@ skimpyAPI.py --png testword --filename test.png --fontpath C:\tmp\skimpyGimpy_1_
 
 def getword(args):
     if len(args)>1:
-        raise ValueError, "some arguments not understood "+repr(args)
+        raise ValueError("some arguments not understood "+repr(args))
     if len(args)<1:
-        raise ValueError, "no word found"
+        raise ValueError("no word found")
     return args[0]
 
 def run(args):
     cargs = list(args)
-    from getparm import getparm
+    from .getparm import getparm
     done = False
     try:
         isPre = getparm(args, "--pre", False, False)
@@ -159,9 +159,9 @@ def run(args):
         fileName = getparm(args, "--filename")
         stdout = getparm(args, "--stdout", False, False)
         if not fileName and not stdout:
-            raise ValueError, "must specify --filename OUTFILE or --stdout or both"
+            raise ValueError("must specify --filename OUTFILE or --stdout or both")
         if [isPre, isPng, isWave].count(True)!=1:
-            raise ValueError, "must specify exactly one of --pre, --png, or --wave"
+            raise ValueError("must specify exactly one of --pre, --png, or --wave")
         if isPre:
             speckle = getparm(args, "--speckle")
             scale = getparm(args, "--scale")
@@ -179,7 +179,7 @@ def run(args):
             indexFile = getparm(args, "--indexfile")
             word = getword(args)
             if not indexFile:
-                raise ValueError, "--indexfile FILENAME is required to generate WAVE files"
+                raise ValueError("--indexfile FILENAME is required to generate WAVE files")
             generator = Wave(word, indexFile)
         result = generator.data(fileName)
         if stdout:
@@ -187,9 +187,9 @@ def run(args):
         done = True
     finally:
         if not done:
-            print "CAPTCHA generation failed for", cargs
-            print
-            print USAGE
+            print("CAPTCHA generation failed for", cargs)
+            print()
+            print(USAGE)
             
 if __name__=="__main__":
     run(sys.argv[1:])

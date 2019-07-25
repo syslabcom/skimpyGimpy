@@ -1,15 +1,15 @@
 "Generate WHIFF template configurations railroad diagrams"
 
 import os
-from Choose import Choose
-from Repeat import Repeat
-from RepeatDelimited import RepeatDelimited
-from Optional import Optional
-from Sequence import Sequence
+from .Choose import Choose
+from .Repeat import Repeat
+from .RepeatDelimited import RepeatDelimited
+from .Optional import Optional
+from .Sequence import Sequence
 from skimpyGimpy import canvas
-from Nonterminal import Nonterminal
-from Literal import Literal
-from Define import Define
+from .Nonterminal import Nonterminal
+from .Literal import Literal
+from .Define import Define
 
 directory = "/tmp/diagrams"
 fontdir = "."
@@ -32,7 +32,7 @@ def dump(diagram, filename, c):
     diagram.drawAt(0,0)
     filepath = directory+"/"+filename+".png"
     c.dumpToPNG(filepath)
-    print "wrote", filepath
+    print("wrote", filepath)
 
 def param(tag="parameter", nameStr="name"):
     c = getc()
@@ -215,7 +215,7 @@ def bindUrl():
 
 if __name__=="__main__":
     if not os.path.exists(directory):
-        print "creating directory", directory
+        print("creating directory", directory)
         os.mkdir(directory)
     pp()
     param()

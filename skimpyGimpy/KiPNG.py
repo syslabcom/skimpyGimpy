@@ -22,32 +22,32 @@ for n in range(256):
     c = n
     for k in range(8):
         if c&1:
-            c = 0xedb88320L ^ (c >> 1)
+            c = 0xedb88320 ^ (c >> 1)
         else:
             c = c >> 1
     PNGCRCTABLE[n] = c
 
 def pngCRC(buf):
-    c = 0xffffffffL
+    c = 0xffffffff
     for char in buf:
         bufn = ord(char)
         index = (c ^ bufn) & 0xff
         c = PNGCRCTABLE[index]^(c >> 8)
-    return c ^ 0xffffffffL
+    return c ^ 0xffffffff
 
 def networkIntToString(integer, nbytes=4):
     #print hex(integer)
     i = integer
     L = []
-    for j in xrange(nbytes):
+    for j in range(nbytes):
         b = i&0xff
         i = i>>8
         #print hex(b), hex(i)
         L.append(b)
     if i and i!=-1:
-        raise ValueError, "%s too large number %s for %s bytes" % (i, integer, nbytes)
+        raise ValueError("%s too large number %s for %s bytes" % (i, integer, nbytes))
     L.reverse()
-    Cs = map(chr, L)
+    Cs = list(map(chr, L))
     return "".join(Cs)
 
 def stringToNetworkInt(s):
@@ -68,7 +68,7 @@ class PNGdata:
         siglen = len(PNGSIGSTRING)
         sig = s[0:siglen]
         if sig!=PNGSIGSTRING:
-            raise ValueError, "bad sig "+repr(sig)
+            raise ValueError("bad sig "+repr(sig))
         index = siglen
         slen = len(s)
         while index<slen:
@@ -93,7 +93,7 @@ class PNGdata:
         this.addChunk(ch)
     def addPLTE(this, paletteSequence):
         if len(paletteSequence)<1:
-            raise ValueError, "palette must have one entry"
+            raise ValueError("palette must have one entry")
         L = []
         #pr paletteSequence
         for (r,g,b) in paletteSequence:
@@ -152,7 +152,7 @@ class IndexedImage:
             if method is not None:
                 method(c)
             else:
-                print "warning: cannot parse "+typeCode
+                print("warning: cannot parse "+typeCode)
     def parseIHDR(this, chunk):
         data = chunk.data
         rem = data
@@ -164,7 +164,7 @@ class IndexedImage:
         (filterMethodS, rem) = (rem[:1], rem[1:])
         (interlaceMethodS, rem) = (rem[:1], rem[1:])
         if rem:
-            raise ValueError, "unknown remainder: "+repr(rem)
+            raise ValueError("unknown remainder: "+repr(rem))
         this.width = stringToNetworkInt(widthS)
         this.height = stringToNetworkInt(heightS)
         this.bitDepth = ord(bitDepthS)
@@ -184,7 +184,7 @@ class IndexedImage:
         elif bitDepth==16:
             bytesPerSample = 2
         else:
-            raise ValueError, "can't handle bit depth %s" % bitDepth
+            raise ValueError("can't handle bit depth %s" % bitDepth)
         colorType = this.colorType
         # determine the scan line size
         if colorType==0:
@@ -197,16 +197,16 @@ class IndexedImage:
             # palette index
             samplesPerPixel = 1
         else:
-            raise ValueError, "can't handle color type %s" % colorType
+            raise ValueError("can't handle color type %s" % colorType)
         bytesPerPixel = samplesPerPixel*bytesPerSample
         scanlinelength = 1 + bytesPerPixel * width
         #print "scan line length", scanlinelength
         size = len(ddata)
         expectedSize = scanlinelength*height
         if size!=expectedSize:
-            raise ValueError, "expected size doesn't match size "+repr((size, expectedSize))
+            raise ValueError("expected size doesn't match size "+repr((size, expectedSize)))
         rows = []
-        for row in xrange(height):
+        for row in range(height):
             thisrow = []
             lstart = row*scanlinelength
             lend = lstart+scanlinelength
@@ -215,7 +215,7 @@ class IndexedImage:
             filternum = ord(filterchar)
             #print "row", row, "filter is", filternum
             samplesdata = rowdata[1:]
-            for col in xrange(width):
+            for col in range(width):
                 pstart = col*bytesPerPixel
                 pend = pstart+bytesPerPixel
                 pdata = samplesdata[pstart:pend]
@@ -243,7 +243,7 @@ class Chunk:
     def __init__(this, typeCode, data, crc=None):
         this.typeCode = typeCode
         if len(typeCode)!=4:
-            raise ValueError, "typecode must be 4 bytes: "+repr(typeCode)
+            raise ValueError("typecode must be 4 bytes: "+repr(typeCode))
         this.data = data
         this.length = len(data)
         this.crc = crc
@@ -302,7 +302,7 @@ def blackBox(size=40, outfile="black.png", palette=True, transparent=True):
     c0 = chr(0)
     c1 = chr(1)
     L = []
-    for i in xrange(size):
+    for i in range(size):
         scanline = filterFlag + (c0*i)+(c1*(size-i))
         L.append(scanline)
     data = "".join(L)
@@ -326,32 +326,32 @@ def DictToPNG0(D, color=(0xff,0xff,0xff), scale=1, speckle=0,
     palette = [ (0,0,0), color ]
     if colorDict:
         # sanity check
-        colorValues = D.values()+[speckIndex]
+        colorValues = list(D.values())+[speckIndex]
         for ci in colorValues:
-            if ci!=0 and ci!=1 and not colorDict.has_key(ci):
-                raise ValueError, "no map for color index "+repr(ci)
-        if not colorDict.has_key(0):
+            if ci!=0 and ci!=1 and ci not in colorDict:
+                raise ValueError("no map for color index "+repr(ci))
+        if 0 not in colorDict:
             colorDict[0] = (0,0,0)
-        if not colorDict.has_key(1):
+        if 1 not in colorDict:
             colorDict[1] = color
-        indices = colorDict.keys()
+        indices = list(colorDict.keys())
         maxindex = max(indices)
         if maxindex>=256:
-            raise ValueError, "max color index too large "+repr(maxindex)
+            raise ValueError("max color index too large "+repr(maxindex))
         palette = [ (0,0,0) ] * (maxindex+1)
         for index in indices:
             palette[index] = colorDict[index]
     filterFlag = chr(NOFILTER)
-    points = D.keys()
+    points = list(D.keys())
     if scale>1:
-        rscale = range(int(round(scale)))
+        rscale = list(range(int(round(scale))))
         newpoints = {}
         for p in points:
             (x,y) = p
             for j in rscale:
                 for i in rscale:
                     newpoints[ (x*scale+i, y*scale+j) ] = p
-        points = newpoints.keys()
+        points = list(newpoints.keys())
     else:
         newpoints = {}
         for p in points:
@@ -375,14 +375,14 @@ def DictToPNG0(D, color=(0xff,0xff,0xff), scale=1, speckle=0,
         ID[(ix,iy)] = D[p0]
     if speckle:
         nspecks = int(speckle*len(ID))
-        for k in xrange(nspecks):
+        for k in range(nspecks):
             x = int(random.uniform(minx, maxx))
             y = int(random.uniform(miny, maxy))
             ID[ (x,y) ] = speckIndex
     c0 = chr(0)
     c1 = chr(1)
-    ry = range(miny,maxy+1)
-    rx = range(minx,maxx+1)
+    ry = list(range(miny,maxy+1))
+    rx = list(range(minx,maxx+1))
     L = []
     rowtemplate = [filterFlag]+list(rx)
     for y in ry:
@@ -391,7 +391,7 @@ def DictToPNG0(D, color=(0xff,0xff,0xff), scale=1, speckle=0,
         for x in rx:
             p = (x,y)
             cc = c0
-            if ID.has_key(p):
+            if p in ID:
                 #print p
                 if colorDict:
                     ci = ID[p]
@@ -437,7 +437,7 @@ def testD(fn="circle.png", npoints=100, factor=20):
         x = math.sin(theta)*factor
         y = math.cos(theta)*factor
         D[ (x,y) ] = i%3+1
-    print  "creating", fn
+    print("creating", fn)
     colorD = {1: (0,0,0xff), 2: (0,0xff,0), 3:(0xff,0,0)}
     DictToPNG(D, fn, colorDict=colorD, scale=4)
 
@@ -447,7 +447,7 @@ def readBlack(fn="black.png"):
     png.readString(s)
     img = IndexedImage()
     img.parseData(png)
-    print img
+    print(img)
 
 def readWhite():
     fn = "white.png"
@@ -458,15 +458,15 @@ def readWhite():
     s2 = png.OutputString()
     outfile.write(s2)
     if s!=s2:
-        print "input doesn't match output"
-        for (i, a, b) in zip(range(len(s)), s, s2):
+        print("input doesn't match output")
+        for (i, a, b) in zip(list(range(len(s))), s, s2):
             if a!=b:
-                print "first diff at", (i, a, b)
+                print("first diff at", (i, a, b))
                 return
-        print "lengths differ", len(s), len(s2)
+        print("lengths differ", len(s), len(s2))
     img = IndexedImage()
     img.parseData(png)
-    print img
+    print(img)
     return png
 
 if __name__=="__main__":

@@ -18,4 +18,4 @@ def go(req, points="", **others):
     return skimpyGimpy.makePage("go", None, "true", cgidata=cgidata)
 
 if __name__=="__main__":
-    print go("")
+    print(go(""))

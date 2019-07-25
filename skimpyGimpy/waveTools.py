@@ -80,7 +80,7 @@ def tone(frequency, nSamples=None,
     #print samplesPerSecond, amplitude, delta,"<br>"
     #print delta*samplesPerSecond, 2*pi*frequency
     result = [ amplitude*sin(delta*i)
-               for i in xrange(nSamples) ]
+               for i in range(nSamples) ]
     return result
 
 def attenuate(samples, tailFraction=0.5, downToFraction=0.3):
@@ -90,7 +90,7 @@ def attenuate(samples, tailFraction=0.5, downToFraction=0.3):
     startIndex = nsamples-nchange
     scaleDelta = - (1.0-downToFraction)/nchange
     scaleFactor = 1.0 - scaleDelta
-    for index in xrange(startIndex, nsamples):
+    for index in range(startIndex, nsamples):
         scaleFactor += scaleDelta
         samples[index] = samples[index]*scaleFactor
     return samples
@@ -104,7 +104,7 @@ def cattenuate(samples, tailFraction=0.5, downToFraction=0.3):
     reductionFraction = 1.0-downToFraction
     radians = 0.0
     deltaRadians = pi/nchange
-    for index in xrange(startIndex, nsamples):
+    for index in range(startIndex, nsamples):
         radians += deltaRadians
         reduction = 0.5*cos(radians)
         scaleFactor = downToFraction + reduction*reductionFraction
@@ -116,7 +116,7 @@ def inflectionIndices(samples, window=30):
     ls = len(samples)
     D = {0:1, ls-1:1}
     tendancy = (1,1)
-    for i in xrange(window, ls-window):
+    for i in range(window, ls-window):
         tb = 1
         ta = 1
         s = samples[i]
@@ -126,24 +126,24 @@ def inflectionIndices(samples, window=30):
         if t!=tendancy:
             D[i] = i
         tendancy = t
-    keys = D.keys()
+    keys = list(D.keys())
     keys.sort()
     return (keys, D)
 
 def interpolationChoices(samples, window=30, fraction=0.11):
     (ip, D) = inflectionIndices(samples, window)
-    for i in xrange(len(ip)-1):
+    for i in range(len(ip)-1):
         i1 = ip[i]
         i2 = ip[i+1]
         if i2<i1:
-            raise ValueError, "indices not ascending"
+            raise ValueError("indices not ascending")
         diffpart = int((i2-i1)*fraction)+1
         index = i1
         while index<i2:
             index += diffpart
             index = max(i2, index)
             D[index] = 1
-    keys = D.keys()
+    keys = list(D.keys())
     keys.sort()
     return (keys, D)
         
@@ -152,18 +152,18 @@ def inflectionTest():
     length = 80
     delta = 0.19
     window = 5
-    rr = range(length)
+    rr = list(range(length))
     samples = [ int( 10*sin(x*delta) ) for x in rr ]
-    print rr
-    print samples
+    print(rr)
+    print(samples)
     (ii, id) = inflectionIndices(samples, window)
-    print "ii", ii
-    print "ip\tsamples\tr\trr"
+    print("ii", ii)
+    print("ip\tsamples\tr\trr")
     for i in rr:
         ind = " "
-        if id.has_key(i):
+        if i in id:
             ind = "*"
-        print ind, "%s\t%s" % (samples[i], i)
+        print(ind, "%s\t%s" % (samples[i], i))
 
 def sampleInterpolation(samples, window=WINDOWSIZE):
     (xs, D) = interpolationChoices(samples, window, SUBSAMPLEFRACTION)
@@ -178,11 +178,11 @@ def liFile(filename="li.wav"):
     #li = li.stretch(0.7)
     #li = li.perturb(8, 0.01)
     li = li.overlap(li, 0.7)
-    print li.extrema()
+    print(li.extrema())
     li = li.fit(MIN8, MAX8)
     outsamples = li.toSamples()
     outsamples = [int(y) for y in outsamples]
-    print "input size", len(insamples), "appx size", len(li), "out size", len(outsamples)
+    print("input size", len(insamples), "appx size", len(li), "out size", len(outsamples))
     return samplesToFile(filename, outsamples, sampwidth=1)
 
 class LinearInterpolation:
@@ -204,7 +204,7 @@ class LinearInterpolation:
         return (xstart, xstop)
     def toSamples(this):
         (xstart, xstop) = this.definedRange()
-        return this.yValues(xrange(int(xstart)+1, int(xstop)))
+        return this.yValues(range(int(xstart)+1, int(xstop)))
     def extrema(this):
         ys = [y for (x,y) in this.points]
         return (min(ys), max(ys))
@@ -235,7 +235,7 @@ class LinearInterpolation:
         xdiff = (xstop-xstart)*1.0
         attstart = xstop - xdiff*tailFraction
         points = list(this.points)
-        for i in xrange(len(points)):
+        for i in range(len(points)):
             (x,y) = points[i]
             if x>attstart:
                 reductionfraction = (xstop-x)/xdiff
@@ -266,12 +266,12 @@ class LinearInterpolation:
                 outerpoints[p]=1
             else:
                 innerxs[x] = 1
-        xs = innerxs.keys()
+        xs = list(innerxs.keys())
         xs.sort()
         thisys = this.yValues(xs)
         shiftys = otherShifted.yValues(xs)
         innerpoints = [ (x, y1+y2) for (x,y1,y2) in zip(xs, thisys, shiftys) ]
-        points = innerpoints + outerpoints.keys()
+        points = innerpoints + list(outerpoints.keys())
         points.sort()
         return LinearInterpolation(points, False)
     def sum(this, other):
@@ -281,7 +281,7 @@ class LinearInterpolation:
             allxD[x] = 1
         for (x,y) in other.points:
             allxD[x] = 1
-        allx = allxD.keys()
+        allx = list(allxD.keys())
         allx.sort()
         myys = this.yValues(allx)
         oys = other.yValues(allx)
@@ -295,7 +295,7 @@ class LinearInterpolation:
         result = list(xValues)
         pindex = None
         lr = len(result)
-        for i in xrange(lr):
+        for i in range(lr):
             xi = xValues[i]
             if xi>=xstart and xi<=xstop:
                 if pindex is None:
@@ -331,7 +331,7 @@ def overlap(samples1, samples2, fraction=0.2):
     s1start = lens1-nchange
     #result = list(samples1)
     result = samples1
-    for i in xrange(nchange):
+    for i in range(nchange):
         s1i = s1start+i
         result[s1i] = samples1[s1i] + samples2[i]
     result = result + samples2[nchange:]
@@ -342,14 +342,14 @@ def randomDeletes(samples, atleast=0.01, atmost=0.02):
     deletes = {}
     slen = len(samples)
     ndeletes = int(uniform(atleast, atmost)*slen)
-    for i in xrange(ndeletes):
+    for i in range(ndeletes):
         choice = int(uniform(1,slen-1))
         deletes[choice] = choice
     outlen = slen-len(deletes)
-    result = range(outlen)
+    result = list(range(outlen))
     sindex = 0
     for i in result:
-        while deletes.has_key(sindex):
+        while sindex in deletes:
             sindex+=1
         result[i] = samples[sindex]
         sindex+=1
@@ -370,7 +370,7 @@ def walk(lowfrequency, highfrequency, nSamples=None,
         nSamples = int(samplesPerSecond)
     samplesPerSecond = float(samplesPerSecond)
     amplitude = (maximum-minimum)/2.0
-    result = r = range(nSamples)
+    result = r = list(range(nSamples))
     x = 0.0
     f = uniform(lowfrequency, highfrequency)
     for i in r:
@@ -390,7 +390,7 @@ def mix(primarySamples, primaryWeight, otherSamples, otherWeights):
     for (samples, weight) in zip(otherSamples, otherWeights):
         extra = fit(samples, -weight, weight)
         le = len(extra)
-        for i in xrange(nsamples):
+        for i in range(nsamples):
             result[i] += extra[i%le]
     return result
 
@@ -400,7 +400,7 @@ def mixFile(filename="mix.wav"):
     samples = foreground
     samples = mix(foreground, 100, [background], [25])
     samples = fit(samples, 0,254)
-    print samplesToDivs(samples, 300)
+    print(samplesToDivs(samples, 300))
     return samplesToFile(filename, samples, sampwidth=1)
 
 def walkFile(filename="walk.wav", low=-990, high=880):
@@ -435,7 +435,7 @@ def tone2File(filename="twotone.wav", f1=440, f2=330):
     s1 = attenuate(s1, 0.7, 0)
     s2 = attenuate(s2, 1.0, 0)
     samples = overlap(s1, s2)
-    print samples
+    print(samples)
     return samplesToFile(filename, samples)
 
 def samplesFromFile(filename="wave/underscore.wav"):
@@ -444,14 +444,14 @@ def samplesFromFile(filename="wave/underscore.wav"):
     nframes = f.getnframes()
     sampwidth = f.getsampwidth()
     if sampwidth not in (1,2):
-        raise ValueError, "can't work with sampwidth %s" % sampwidth
+        raise ValueError("can't work with sampwidth %s" % sampwidth)
     frames = [None]*nframes
     for i in range(nframes):
         frames[i] = f.readframes(1)
     if sampwidth==1:
-        samples = map(ord, frames)
+        samples = list(map(ord, frames))
     else:
-        samples = map(wave16, frames)
+        samples = list(map(wave16, frames))
     #print samples[:3000]
     mins = min(samples)
     maxs = max(samples)
@@ -474,11 +474,11 @@ def fit(samples, minimum, maximum):
 
 def fit16(samples):
     result = fit(samples, MIN16, MAX16)
-    return map(int, result)
+    return list(map(int, result))
 
 def fit8(samples):
     result = fit(samples, MIN8, MAX8)
-    return map(int, result)
+    return list(map(int, result))
 
 def samplesToFile(filename, samples, sampwidth=2):
     f = file(filename, "w")
@@ -488,8 +488,8 @@ def samplesToFile(filename, samples, sampwidth=2):
     f.close()
 
 def samplesToString(samples, sampwidth=2):
-    import cStringIO, wave
-    f0 = cStringIO.StringIO()
+    import io, wave
+    f0 = io.StringIO()
     f = wave.open(f0, "wb")
     samplesToFileObject(f, samples, sampwidth)
     result = f0.getvalue()
@@ -510,9 +510,9 @@ def samplesToFileObject(f, samples, sampwidth=2):
     f.setsampwidth(sampwidth)
     f.setframerate(framerate)
     if sampwidth==2:
-        outframes = map(toWave16frame, samples)
+        outframes = list(map(toWave16frame, samples))
     elif sampwidth==1:
-        outframes = map(chr, map(int, map(round, samples)))
+        outframes = list(map(chr, list(map(int, list(map(round, samples))))))
     framestring = "".join(outframes)
     #print samples[:100]
     #print repr(framestring[:100])
@@ -544,11 +544,11 @@ class LettersIndex:
         import marshal, zlib
         outfile = file(zipFileName, "wb")
         # force load all files...
-        for x in this.keys():
+        for x in list(this.keys()):
             test = this.getAppx(x)
         D = {}
         appx = this.lettersToAppx
-        for letter in appx.keys():
+        for letter in list(appx.keys()):
             li = appx[letter]
             D[letter] = li.points
         rp = marshal.dumps(D)
@@ -563,7 +563,7 @@ class LettersIndex:
         rpz = infile.read()
         rp = zlib.decompress(rpz)
         D = marshal.loads(rp)
-        for (letter, points) in D.items():
+        for (letter, points) in list(D.items()):
             this.lettersToAppx[letter] = LinearInterpolation(points)
     def addLetter(this, letter, sequence):
         this.lettersToAppx[letter] = sampleInterpolation(sequence)
@@ -571,20 +571,20 @@ class LettersIndex:
         this.lettersToPath[letter] = filename
     def getAppx(this, letter):
         ls = this.lettersToAppx
-        if ls.has_key(letter):
+        if letter in ls:
             return ls[letter]
         lp = this.lettersToPath
-        if lp.has_key(letter):
+        if letter in lp:
             path = lp[letter]
             samples = samplesFromFile(filename=path)
             this.addLetter(letter, samples)
             return this.lettersToAppx[letter]
-        raise ValueError, "no mapping found for "+repr(letter)
+        raise ValueError("no mapping found for "+repr(letter))
     def keys(this):
         d = {}
         d.update(this.lettersToAppx)
         d.update(this.lettersToPath)
-        return d.keys()
+        return list(d.keys())
     def clean(this, s):
         s = s.lower()
         r = []
@@ -592,7 +592,7 @@ class LettersIndex:
         d.update(this.lettersToAppx)
         d.update(this.lettersToPath)
         for c in s:
-            if d.has_key(c):
+            if c in d:
                 r.append(c)
         result = "".join(r)
         if not result: result = " "
@@ -763,7 +763,7 @@ def getparm(L, name, default=None, getValue=True):
             try:
                 v = L[i+1]
             except IndexError:
-                raise ValueError, "parameter %s requires a value" % repr(name)
+                raise ValueError("parameter %s requires a value" % repr(name))
             del L[i+1]
         del L[i]
     return v
@@ -809,22 +809,22 @@ def main():
         filename = getparm(parms, "--filename")
         stdout = getparm(parms, "--stdout", getValue=False)
         if len(parms)<1:
-            raise ValueError, "please provide string to encode"
+            raise ValueError("please provide string to encode")
         if len(parms)>1:
-            raise ValueError, "unknown parameters "+repr(parms)
+            raise ValueError("unknown parameters "+repr(parms))
         instring = parms[0]
         if not filename and not stdout:
             raise "must specify --filename or --stdout option"
         if filename and stdout:
             raise "--filename and --stdout parameters cannot be used at the same time"
     except:
-        print usage
+        print(usage)
         raise
     else:
         if not compiled: indexFile = None
         if indexFile:
             if filename:
-                print "using index file path", repr(indexFile)
+                print("using index file path", repr(indexFile))
             index = LettersIndex()
             index.loadZip(indexFile)
         else:

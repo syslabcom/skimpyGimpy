@@ -1,5 +1,5 @@
 
-import entity
+from . import entity
 
 class Attribute(entity.Entity):
     def drawContainer(self):
@@ -32,7 +32,7 @@ def test(fontdir=".", outfile="/tmp/out.png"):
     l.draw()
     l2.draw()
     c.dumpToPNG(outfile)
-    print "test output to", outfile
+    print("test output to", outfile)
 
 if __name__=="__main__":
     test()

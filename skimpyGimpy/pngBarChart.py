@@ -22,7 +22,7 @@ class BarChart:
         this.axisDelta = axisDelta
     def drawTo(this, filename, jsfilename=None, htmlfilename=None,
                canvasLocation="canvas.js"):
-        from canvas import Canvas
+        from .canvas import Canvas
         c = Canvas()  
         #c.setBackgroundColor(0,0,0)
         #c.setBackgroundCallback("out")
@@ -78,7 +78,7 @@ def test(name="bars", verbose=False, canvasLocation="canvas.js"):
     js = name+".js"
     html = name+".html"
     if verbose:
-        print "writing", fn, js, html
+        print("writing", fn, js, html)
     labelsAndData = [
         ("december", 30),
         ("january", 50),

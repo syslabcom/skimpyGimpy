@@ -8,7 +8,7 @@ p = "/home/awatters/webapps/mod_python/htdocs/skimpyGimpy"
 if p not in sys.path:
 	sys.path.insert(0,p)
 	
-import  urllib
+import  urllib.request,  urllib.parse,  urllib.error
 from skimpyGimpy import skimpyAPI, skimpyGimpy
 import skimpyModPyConfig
 
@@ -70,8 +70,8 @@ def go(req, s="example", wave=None, **others):
         D["skimpy"] = skimpyAPI.Pre(word, speckle=speckle, scale=prescale, color=color).data()
         D["img"] = hpath
         D["s"] = repr(s)
-        D["s0"] = urllib.quote(s)
+        D["s0"] = urllib.parse.quote(s)
 	return template % D
 
 if __name__=="__main__":
-        print go(None)
+        print(go(None))

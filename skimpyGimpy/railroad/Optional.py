@@ -2,9 +2,9 @@
 Railroad repeat
 """
 
-import Configuration
+from . import Configuration
 from skimpyGimpy import bdf
-import Literal
+from . import Literal
 
 class Optional(Literal.LiteralBase):
     def __init__(self, thing, canvas, config=None):
@@ -67,7 +67,7 @@ def test(fontdir=".", outfile="/tmp/out.png"):
     r = Optional(l, c)
     r.drawAt(100, -100)
     c.dumpToPNG(outfile)
-    print "test output to", outfile
+    print("test output to", outfile)
     
 if __name__=="__main__":
     test()

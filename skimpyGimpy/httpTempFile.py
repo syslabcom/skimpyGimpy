@@ -65,16 +65,16 @@ def test():
     suffix = ".txt"
     killAgeSeconds=3
     for i in range(20):
-        print "test iteration", i
+        print("test iteration", i)
         content = "test content for "+repr(i)
         x = storeAndRemoveOldFiles(content, directory, HTTPdirectory, prefix, suffix,
                              killAgeSeconds)
-        print "made", x
+        print("made", x)
         allFileNames = os.listdir(directory)
-        print "nfiles in %s: %s" % (directory, len(allFileNames))
+        print("nfiles in %s: %s" % (directory, len(allFileNames)))
         for fn in allFileNames:
-            print "    ", fn
-        print "sleeping 2"
+            print("    ", fn)
+        print("sleeping 2")
         time.sleep(2)
 
 if __name__=="__main__":

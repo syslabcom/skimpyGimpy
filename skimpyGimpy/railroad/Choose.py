@@ -2,9 +2,9 @@
 """
 Railroad nonterminal
 """
-import Configuration
+from . import Configuration
 from skimpyGimpy import bdf
-import Literal
+from . import Literal
 
 def near(p1, p2):
     (x1, y1) = p1
@@ -105,7 +105,7 @@ def test(fontdir=".", outfile="/tmp/out.png"):
     ch2 = Choose([ch, l3, l2], c)
     ch2.drawAt(120,190)
     c.dumpToPNG(outfile)
-    print "test output to", outfile
+    print("test output to", outfile)
 
 if __name__=="__main__":
     test()

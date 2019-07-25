@@ -13,8 +13,8 @@ for fn in cgifilenames:
     for line in lines:
         outfile.write(line)
     outfile.close()
-    print "copied ", (fn, outfilename), " using newline only line endings"
-    print "unlinking", fn
+    print("copied ", (fn, outfilename), " using newline only line endings")
+    print("unlinking", fn)
     os.unlink(fn)
-    print "moving", (outfilename, fn)
+    print("moving", (outfilename, fn))
     os.rename(outfilename, fn)

@@ -1,8 +1,8 @@
 
-import config
+from . import config
 import math
 import types
-import card
+from . import card
 from skimpyGimpy import bdf
 
 def sign(a,b):
@@ -25,7 +25,7 @@ def orthogonals(p1, p2):
 
 class Entity:
     def __init__(self, name, canvas, x, y, underline=False, minwidth=None, cfg=None):
-        if type(name) in types.StringTypes:
+        if type(name) in (str,):
             name = [name]
         self.name = name
         self.underline = underline
@@ -47,7 +47,7 @@ class Entity:
         c = self.canvas
         c.setColor(0,0,0)
         B = self.barriers()
-        for p in B.keys():
+        for p in list(B.keys()):
             (x,y) = p
             c.addRect(x-1, y-1, 2, 2)
         D = self.destinationMap()
@@ -115,8 +115,8 @@ class Entity:
         cfg = self.cfg
         d = cfg.delta
         # xxxx probably only need the border, not interior...
-        for gx in xrange(gw+1):
-            for gy in xrange(gh+1):
+        for gx in range(gw+1):
+            for gy in range(gh+1):
                 result[ (x+gx*d, y+gy*d) ] = True
         return result
     def textGeometry(self):
@@ -160,7 +160,7 @@ def test(fontdir=".", outfile="/tmp/out.png"):
     l.draw()
     l2.draw()
     c.dumpToPNG(outfile)
-    print "test output to", outfile
+    print("test output to", outfile)
 
 if __name__=="__main__":
     test()

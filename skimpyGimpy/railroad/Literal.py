@@ -3,7 +3,7 @@
 Railroad literal
 """
 
-import Configuration
+from . import Configuration
 from skimpyGimpy import bdf
 import types
 
@@ -74,7 +74,7 @@ class Literal(LiteralBase):
                  config=None):
         if config is None:
             config = Configuration.Configuration()
-        if type(text) in types.StringTypes:
+        if type(text) in (str,):
             text = [text]
         self.text = text
         self.canvas = canvas
@@ -137,7 +137,7 @@ def test(fontdir=".", outfile="/tmp/out.png"):
     l.drawAt(120, 160, test=True)
     l2.drawAt(-120, -120, test=True)
     c.dumpToPNG(outfile)
-    print "test output to", outfile
+    print("test output to", outfile)
 
 if __name__=="__main__":
     test()

@@ -4,15 +4,15 @@ Generate a PNG railroad diagram from a BNF rule.
    rule in  xxx | yyy , [ xxx ] , xxx* , xxx+ , "literal" , nonterminal
 """
 
-from Choose import Choose
-from Repeat import Repeat
-from RepeatDelimited import RepeatDelimited
-from Optional import Optional
-from Sequence import Sequence
+from .Choose import Choose
+from .Repeat import Repeat
+from .RepeatDelimited import RepeatDelimited
+from .Optional import Optional
+from .Sequence import Sequence
 from skimpyGimpy import canvas
-from Nonterminal import Nonterminal
-from Literal import Literal
-from Define import Define
+from .Nonterminal import Nonterminal
+from .Literal import Literal
+from .Define import Define
 
 directoryname = "diagrams"
 fontdir = "."
@@ -40,7 +40,7 @@ def bnfDiagram(rule, filename):
     body = body.strip()
     (definition, cursor) = alternatives([], 0, body, c)
     if cursor<len(body):
-        raise ValueError, "not all of body consumed "+repr(body[cursor:])
+        raise ValueError("not all of body consumed "+repr(body[cursor:]))
     diagram = Define(target, definition, c)
     dump(diagram, filename, c)
 
@@ -50,7 +50,7 @@ def alternatives(accumulator, cursor, text, c):
     accumulator1 = accumulator+[sq]
     ltext = len(text)
     if cursor1<=cursor:
-        raise ValueError, "cursor not advancing"
+        raise ValueError("cursor not advancing")
     if text[cursor1:cursor1+1]=="|":
         #pr "alternative advancing at", repr(text[cursor1:])
         cursor1+=1
@@ -59,7 +59,7 @@ def alternatives(accumulator, cursor, text, c):
         # recursive case
         return alternatives(accumulator1, cursor1, text, c)
     if not accumulator1:
-        raise ValueError, "don't know what to do with empty rule body in alternative "+repr((cursor, text[cursor:]))
+        raise ValueError("don't know what to do with empty rule body in alternative "+repr((cursor, text[cursor:])))
     if len(accumulator1)==1:
         return (accumulator1[0], cursor1)
     return (Choose(accumulator1, c), cursor1)
@@ -68,7 +68,7 @@ def sequence(accumulator, cursor, text, c):
     #pr "sequence at", repr(text[cursor:])
     (paren, cursor1) = parenthesized(cursor, text, c)
     if cursor1<=cursor:
-        raise ValueError, "cursor not advancing"
+        raise ValueError("cursor not advancing")
     accumulator1 = accumulator + [paren]
     if len(text)>cursor1 and not text[cursor1] in "|)]":
         #pr "sequence advancing at", repr(text[cursor1:])
@@ -77,7 +77,7 @@ def sequence(accumulator, cursor, text, c):
     else:
         # end of sequence
         if not accumulator1:
-            raise ValueError, "don't know what to do with empty rule body in sequence "+repr((cursor, text[cursor:]))
+            raise ValueError("don't know what to do with empty rule body in sequence "+repr((cursor, text[cursor:])))
         if len(accumulator1)==1:
             # trivial seq
             return (accumulator1[0], cursor1)
@@ -89,7 +89,7 @@ def parenthesized(cursor, text, c):
     ltext = len(text)
     firstchar = text[cursor:cursor+1]
     if firstchar in string.whitespace:
-        raise ValueError, "cursor should not be positioned at whitespace"
+        raise ValueError("cursor should not be positioned at whitespace")
     # parse an item
     if firstchar=="(":
         # (parenthesized)
@@ -133,9 +133,9 @@ def termOrNonTerm(cursor, text, c):
     start = cursor
     firstchar = text[cursor]
     if firstchar in string.whitespace:
-        raise ValueError, "cursor should not be positioned at white space"
+        raise ValueError("cursor should not be positioned at white space")
     if firstchar in punct:
-        raise ValueError, "cursor should not be positioned at punctuation"
+        raise ValueError("cursor should not be positioned at punctuation")
     if firstchar=='"':
         # parse a terminal
         cursor += 1
@@ -164,9 +164,9 @@ def termOrNonTerm(cursor, text, c):
     return (result, cursor)
 
 def dotest(rule, filename):
-    print "storing", rule
+    print("storing", rule)
     bnfDiagram(rule, filename)
-    print "stored to", filename
+    print("stored to", filename)
 
 def test():
     dotest(' literal ::= "the literal" ', "/tmp/literal.png")

@@ -2,9 +2,9 @@
 DOSMOOTH = True
 import math
 import heapq
-import config
-import entity
-import card
+from . import config
+from . import entity
+from . import card
 
 class pathMaker:
     def __init__(self, origins, destinations, barriers, delta, stepLimit=1000000):
@@ -23,22 +23,22 @@ class pathMaker:
         # (cost, gridpoint) for current points
         #heap = [ (0, origin) for origin in self.gorigins.keys() ]
         heap = []
-        for origin in self.gorigins.keys():
-            if not self.gbarriers.has_key(origin):
+        for origin in list(self.gorigins.keys()):
+            if origin not in self.gbarriers:
                 heap.append( (0, origin) )
         heapq.heapify(heap)
         self.heap = heap
         self.final_destination = None
     def addEstimate(self, point, previous, cost):
         # increase cost by one penalty point for each special within two ticks
-        if self.gbarriers.has_key(point):
+        if point in self.gbarriers:
             #pr "barrier", point
             return # don't enter barrier
         (x,y) = point
         specials = self.specials
-        for xx in xrange(x-2,x+3):
-            for yy in xrange(y-2,y+3):
-                if specials.has_key((xx,yy)):
+        for xx in range(x-2,x+3):
+            for yy in range(y-2,y+3):
+                if (xx,yy) in specials:
                     cost += 0.2
         oldcost = self.pointCost.get(point)
         if oldcost is None or cost<oldcost:
@@ -48,7 +48,7 @@ class pathMaker:
             #pr "added", point, cost, previous
     def process(self, point, baseCost):
         visited = self.visited
-        if visited.has_key(point):
+        if point in visited:
             # already processed at same or lesser cost: skip
             return
         visited[point] = True
@@ -71,7 +71,7 @@ class pathMaker:
             xx = x+dx
             yy = y+dy
             pp = (xx,yy)
-            if not gdests.has_key(pp) or gorig.has_key(pp):
+            if pp not in gdests or pp in gorig:
                 self.addEstimate(pp, point, newcost)
     def search(self):
         done = False
@@ -81,9 +81,9 @@ class pathMaker:
         while not done:
             count += 1
             if count>stepLimit:
-                raise ValueError, "step limit exceeded"
+                raise ValueError("step limit exceeded")
             (cost, nextp) = heapq.heappop(self.heap)
-            if gdestinations.has_key(nextp):
+            if nextp in gdestinations:
                 self.final_destination = nextp
                 done = True
                 self.path_cost = cost
@@ -94,21 +94,21 @@ class pathMaker:
         delta = self.delta
         final_destination = self.final_destination
         if final_destination is None:
-            raise ValueError, "no final destination found"
+            raise ValueError("no final destination found")
         gridpoints = []
         lastpoint = final_destination
         gorigins = self.gorigins
         visited = {}
         #cost = 0
-        while not gorigins.has_key(lastpoint) and not visited.has_key(lastpoint):
+        while lastpoint not in gorigins and lastpoint not in visited:
             gridpoints.append(lastpoint)
             visited[lastpoint] = True
             nextpoint = self.pointPrevious[lastpoint]
             #pr "lastpoint, cost", lastpoint, cost
             lastpoint = nextpoint
             #cost = self.pointCost[lastpoint]
-        if not gorigins.has_key(lastpoint):
-            raise ValueError, "apparent loop in path at "+lastpoint
+        if lastpoint not in gorigins:
+            raise ValueError("apparent loop in path at "+lastpoint)
         gridpoints.reverse()
         #pr "gridpoints", gridpoints
         start = gorigins[lastpoint]
@@ -167,7 +167,7 @@ class CardinalPath:
 
 def smooth(path):
     lpath = len(path)
-    for i in xrange(2, lpath-3):
+    for i in range(2, lpath-3):
         path[i] = mix(path[i-2], path[i-1], path[i], path[i+1], path[i+2])
 
 def mix(pmm, pminus, p, pplus, ppp):
@@ -182,7 +182,7 @@ def mix(pmm, pminus, p, pplus, ppp):
     
 def griddict(D, delta):
     result = {}
-    for p in D.keys():
+    for p in list(D.keys()):
         result[gridpoint(p, delta)] = p
     return result
 
@@ -195,7 +195,7 @@ def gridpoint(p, delta):
 
 def test(fontdir=".", outfile="/tmp/out.png"):
     from skimpyGimpy import canvas
-    from entity import Entity
+    from .entity import Entity
     c = canvas.Canvas()
     c.addFont("propell", fontdir+"/atari-small.bdf")
     l = Entity("test literal", c, 120, 240)
@@ -223,7 +223,7 @@ def test(fontdir=".", outfile="/tmp/out.png"):
                  c, origins, destinations)
     pth.draw()
     c.dumpToPNG(outfile)
-    print "test output to", outfile
+    print("test output to", outfile)
 
 if __name__=="__main__":
     test()

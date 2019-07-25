@@ -76,24 +76,24 @@ def apiTest():
 
 
 def go():
-    print
-    print "running API tests"
-    print
+    print()
+    print("running API tests")
+    print()
     apiTest()
-    print
-    print "running canvas tests"
-    print
+    print()
+    print("running canvas tests")
+    print()
     canvas.allTests()
-    print
-    print "bar chart test"
-    print
+    print()
+    print("bar chart test")
+    print()
     pngBarChart.test(canvasLocation="../skimpyGimpy/canvas.js")
-    print
-    print "pie chart test"
-    print
+    print()
+    print("pie chart test")
+    print()
     pngPieChart.test(canvasLocation="../skimpyGimpy/canvas.js")
-    print
-    print "tests complete"
+    print()
+    print("tests complete")
 
 if __name__=="__main__":
     go()

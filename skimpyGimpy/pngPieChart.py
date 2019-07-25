@@ -6,7 +6,7 @@ import math
 
 RSHADES = [0,64,122]
 NRSHADES = len(RSHADES)
-SHADES = range(0,256,64)
+SHADES = list(range(0,256,64))
 NSHADES = len(SHADES)
 
 class PieChart:
@@ -77,7 +77,7 @@ class PieChart:
         return canvas
     def drawTo(this, filename, jsfilename=None, htmlfilename=None,
                canvasLocation="canvas.js"):
-        from canvas import Canvas
+        from .canvas import Canvas
         c = Canvas()
         this.drawOn(c)
         c.dumpToPNG(filename)
@@ -91,8 +91,8 @@ class PieChart:
 def wedgePoints(startRadians, endRadians, radius, delta=math.pi/180):
     result = [ (0,0) ]
     if (endRadians<startRadians):
-        raise ValueError, "end must be larger than start %s %s" % (
-            endRadians,startRadians)
+        raise ValueError("end must be larger than start %s %s" % (
+            endRadians,startRadians))
     nangles = int( (endRadians-startRadians)/delta)+2
     for i in range(nangles):
         angle = startRadians + (i-1)*delta

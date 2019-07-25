@@ -1542,7 +1542,7 @@ ENDCHAR
 ENDFONT
 """
 
-import bdf
+from . import bdf
 
 CursiveFont = bdf.font()
 lines = FONTDATA.strip().split("\n")

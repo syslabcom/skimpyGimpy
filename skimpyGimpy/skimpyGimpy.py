@@ -26,7 +26,7 @@ def scaleY(points, factor):
 def mixSequence(size):
     "return sequence weights (a,b,c,d) for mixing control points"
     if size<3:
-        raise ValueError, "size too small"
+        raise ValueError("size too small")
     result = []
     delta = (math.pi/2.0)/(size-1)
     for i in range(size):
@@ -52,7 +52,7 @@ class curve:
         this.integer = integer
     def plot(this, delta, scale=1.0):
         if delta<-0.1 or delta>1.1:
-            raise ValueError, "delta should be between 0 and 1"
+            raise ValueError("delta should be between 0 and 1")
         mix = this.mix
         nmix = len(mix)
         index = int(round( nmix*delta ))
@@ -87,7 +87,7 @@ def curveTable(points, size=40, width=8, onclick="alert('click '+%s+', '+%s)",
     for p in points:
         for x in p:
             if x<0 or x>size:
-                raise ValueError, "point coords must be within 0 to "+repr(size)+"::"+repr(x)
+                raise ValueError("point coords must be within 0 to "+repr(size)+"::"+repr(x))
     samples = size*3
     t = mixSequence(samples)
     D = {}
@@ -119,7 +119,7 @@ def curveTable(points, size=40, width=8, onclick="alert('click '+%s+', '+%s)",
         L.append("<tr>")
         for j in range(sizep1):
             color = bgcolor
-            if D.has_key( (i,j) ):
+            if (i,j) in D:
                 color = fgcolor
             oc = onclick % (i,j)
             L.append('<td bgcolor="%s" width="%s" height="%s" onclick="%s"></td>' % (color, width, width, oc))
@@ -137,7 +137,7 @@ class letterPoints:
         L = ["letterPoints( {"]
         a = L.append
         D = this.letterToPoints
-        keys = D.keys()
+        keys = list(D.keys())
         keys.sort()
         for letter in keys:
             a("%s:   [" % repr(letter))
@@ -165,7 +165,7 @@ class letterPoints:
             if len(letter)>2 and letter[0]==letter[-1]=='"':
                 letter = letter[1:-1]
             if len(letter)!=1:
-                raise ValueError, "bad letter: "+repr(letter)
+                raise ValueError("bad letter: "+repr(letter))
             # skip ws
             point = ""
             while not point and not done:
@@ -174,7 +174,7 @@ class letterPoints:
                     done = True
                 point = line.strip()
             if done:
-                raise ValueError, "found letter %s with no points" % repr(letter)
+                raise ValueError("found letter %s with no points" % repr(letter))
             # collect all points to next white line
             pointsdata = point
             while point:
@@ -209,8 +209,8 @@ class gimpyString:
         this.string = string
         l2p = points.letterToPoints
         for ch in string:
-            if not l2p.has_key(ch):
-                raise ValueError, "no point sequence defined for character: "+repr(ch)
+            if ch not in l2p:
+                raise ValueError("no point sequence defined for character: "+repr(ch))
         this.pointSequences = [ l2p[ch] for ch in string ]
         this.joinedPoints = None
         this.maxX = this.maxY = None
@@ -246,7 +246,7 @@ class gimpyString:
         this.joined = True
     def shift(this):
         if not this.joined:
-            raise ValueError, "must join first"
+            raise ValueError("must join first")
         j = this.joinedPoints
         (minX, minY) = j[0]
         for (x,y) in j:
@@ -257,7 +257,7 @@ class gimpyString:
         this.shifted = True
     def pixelize(this):
         if not this.shifted:
-            raise ValueError, "must shift first"
+            raise ValueError("must shift first")
         scale = this.scale
         samples = this.samples
         t = mixSequence(samples)
@@ -291,7 +291,7 @@ class gimpyString:
         pd = this.pixelDict
         sf = this.scatterFactor
         npd = {}
-        for (x,y) in pd.keys():
+        for (x,y) in list(pd.keys()):
             x = int(random.uniform(0, sf)+x)
             y = int(random.uniform(0, sf)+y)
             npd[(x,y)] = 1
@@ -300,7 +300,7 @@ class gimpyString:
         limit = this.smearLimit
         radius = this.smearRadius
         pd = this.pixelDict
-        for (x,y) in pd.keys():
+        for (x,y) in list(pd.keys()):
             for i in range(int(random.uniform(0,limit))):
                 x1 = int(random.uniform(0, radius)+x)
                 y1 = int(random.uniform(0, radius)+y)
@@ -310,7 +310,7 @@ class gimpyString:
         lpd = len(pd)
         nspeckle = int(lpd*this.speckleFactor)
         maxX = maxY = 0
-        for (x,y) in pd.keys():
+        for (x,y) in list(pd.keys()):
             maxX = max(x, maxX)
             maxY = max(y, maxY)
         for i in range(nspeckle):
@@ -323,19 +323,19 @@ class gimpyString:
         fs = this.fontSize
         color = this.color
         if not pixelDict:
-            raise ValueError, "must pixelize"
+            raise ValueError("must pixelize")
         L = ['<pre style="font-size:%spt;color:%s;font-weight:bold;line-height:%spt" ><!-- %s -->' %(
             fs,color,fs, "generated by skimpyGimpy, created by Aaron Watters")]
         a = L.append
         maxX = maxY = 0
-        for (x,y) in pixelDict.keys():
+        for (x,y) in list(pixelDict.keys()):
             maxX = max(x, maxX)
             maxY = max(y, maxY)
-        rY = range(maxY)
+        rY = list(range(maxY))
         for x in range(maxX+1):
             lineList = [" "] * maxY
             for y in rY:
-                if pixelDict.has_key( (x,y) ):
+                if (x,y) in pixelDict:
                     lineList[y] = mark
             a("".join(lineList))
         a("</pre>")
@@ -350,11 +350,11 @@ class gimpyString:
         this.smear()
         this.speckle()
     def formatPNG(this, filename, color=(0x77, 0x77, 0x77), scale=2):
-        import KiPNG
+        from . import KiPNG
         this.prepare()
         pD = this.pixelDict
         D = {}
-        for (y,x) in this.pixelDict.keys():
+        for (y,x) in list(this.pixelDict.keys()):
             p = (x,-y)
             D[p] = 1
         KiPNG.DictToPNG(D, filename, color, scale)
@@ -367,10 +367,10 @@ def testg(string="test", png=None):
     #g = gimpyString(string.lowercase)
     g = gimpyString(string)
     if png is not None:
-        print "writing png format to", png
+        print("writing png format to", png)
         g.formatPNG(png)
     else:
-        print g.formatAll()
+        print(g.formatAll())
 
 def clean(s, points=None):
     if points is None:
@@ -378,7 +378,7 @@ def clean(s, points=None):
     s = s.lower()
     L = []
     for c in s:
-        if points.letterToPoints.has_key(c):
+        if c in points.letterToPoints:
             L.append(c)
     return "".join(L)
 
@@ -393,7 +393,7 @@ def test1():
         (20,30),
         (0,0),
         ]
-    print curveTable(points)
+    print(curveTable(points))
 
 pagetemplate = r"""
 <html>
@@ -458,16 +458,16 @@ def test2():
         (20,30),
         (0,0),
         ]
-    print makePage("action", points, "false")
+    print(makePage("action", points, "false"))
 
 def test0():
     msize = 30
-    print "<!--"
-    print "<pre>"
+    print("<!--")
+    print("<pre>")
     t = mixSequence(msize)
     for m in t:
-        print m
-    print
+        print(m)
+    print()
     c = curve( (0,0), (0,msize), (msize/2,msize/2), (msize,msize), t, integer=True)
     D = {}
     nsize = msize*3
@@ -475,25 +475,25 @@ def test0():
     for i in range(nsize):
         pt = c.plot(i/nsize1)
         D[pt] = i
-        print i, pt
-    print "</pre>"
-    print "<table border>"
+        print(i, pt)
+    print("</pre>")
+    print("<table border>")
     for i in range(msize+1):
-        print "<tr>"
+        print("<tr>")
         for j in range(msize+1):
-            print "<td>"
+            print("<td>")
             test = D.get( (i,j) )
             if test:
-                print test
-            print "</td>"
-        print "</tr>"
-    print "</table>"
-    print "-->"
-    print
+                print(test)
+            print("</td>")
+        print("</tr>")
+    print("</table>")
+    print("-->")
+    print()
     csize = 300
-    print '<div style="width:%s;height:%s;background-color:blue;position:absolute;top:0;left:0;">' % (
-        csize, csize)
-    print "hello"
+    print('<div style="width:%s;height:%s;background-color:blue;position:absolute;top:0;left:0;">' % (
+        csize, csize))
+    print("hello")
     csize = 300
     t = mixSequence(csize)
     c = curve( (0,0), (0,csize), (csize/2,csize/2), (csize,csize), t, integer=True)
@@ -502,17 +502,17 @@ def test0():
         x = i/float(csize)
         p = c.plot(x)
         D[p] = i
-    for p in D.keys():
+    for p in list(D.keys()):
         (px, py) = p
-        print ('<div style="width:2px;height:2px;position:absolute;background-color:red;'+
+        print(('<div style="width:2px;height:2px;position:absolute;background-color:red;'+
                'clip:rect(0,2px,2px,0);overflow:hidden;'+
-               'top:%spx;left:%spx"></div>' %(px, py) )
-    print '</div>'
+               'top:%spx;left:%spx"></div>' %(px, py) ))
+    print('</div>')
 
 def dumpPoints():
     lp = letterPoints()
     lp.readFromFile()
-    print lp
+    print(lp)
     return ""
 
 basicPoints = letterPoints( {
@@ -1691,7 +1691,7 @@ def getparm(L, name, default=None, getValue=True):
             try:
                 v = L[i+1]
             except IndexError:
-                raise ValueError, "parameter %s requires a value" % repr(name)
+                raise ValueError("parameter %s requires a value" % repr(name))
             del L[i+1]
         del L[i]
     return v
@@ -1701,7 +1701,7 @@ def main():
     args = sys.argv
     png = getparm(args, "--png")
     if len(args)<2:
-        print "please provide a word to encode"
+        print("please provide a word to encode")
     else:
         testg(args[1].lower(), png)
 

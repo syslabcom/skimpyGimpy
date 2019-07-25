@@ -2,9 +2,9 @@
 """
 Railroad nonterminal
 """
-import Configuration
+from . import Configuration
 from skimpyGimpy import bdf
-import Literal
+from . import Literal
 import types
 
 class Nonterminal(Literal.LiteralBase):
@@ -15,7 +15,7 @@ class Nonterminal(Literal.LiteralBase):
                  config=None):
         if config is None:
             config = Configuration.Configuration()
-        if type(text) in types.StringTypes:
+        if type(text) in (str,):
             text = [text]
         self.text = text
         self.canvas = canvas
@@ -66,7 +66,7 @@ def test(fontdir=".", outfile="/tmp/out.png"):
     l.drawAt(20, 60, test=True)
     l2.drawAt(-20, -20, test=True)
     c.dumpToPNG(outfile)
-    print "test output to", outfile
+    print("test output to", outfile)
 
 if __name__=="__main__":
     test()

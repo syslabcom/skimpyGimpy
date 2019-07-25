@@ -31,7 +31,7 @@ def bits(hexLine, result=None):
     for c in hexLine:
         imap = bitIndexMap.get(c, None)
         if imap is None:
-            raise ValueError, "no mapping for "+repr(c)
+            raise ValueError("no mapping for "+repr(c))
         for b in imap:
             result[b+offset] = c
         offset += 4
@@ -62,7 +62,7 @@ class glyph:
         this.dheight = dwy
     def addBits(this, hexLine):
         "add bits but put line at the first position (x=0 position)"
-        theBits = bits(hexLine).keys()
+        theBits = list(bits(hexLine).keys())
         this.lines.insert(0, theBits)
         this.shifter = None
     def shiftDict(this):
@@ -98,10 +98,10 @@ class glyph:
             mline = max(line)
             for x in range(mline+1):
                 if x in line:
-                    print "#",
+                    print("#", end=' ')
                 else:
-                    print " ",
-            print "\t", line
+                    print(" ", end=' ')
+            print("\t", line)
  
 class pixelation:
     def __init__(this, font, s):
@@ -121,12 +121,12 @@ class pixelation:
         return result
     def width(this):
         PD = this.pixelDict()
-        xs = [x for (x,y) in PD.keys()]
+        xs = [x for (x,y) in list(PD.keys())]
         width = max(xs)
         return width
     def drawToCanvas0(this, startx, starty, canvas, radius, scaleFactor=1.0):
         D = this.pixelDict()
-        for (x,y) in D.keys():
+        for (x,y) in list(D.keys()):
             sx = startx+scaleFactor*x
             sy = starty+scaleFactor*y
             canvas.addCircle(sx, sy, radius)
@@ -135,7 +135,7 @@ class pixelation:
         canvas.plotDict(startx, starty, D, radius, scaleFactor)
     def display(this, mark="#", blank=" "):
         D = this.pixelDict()
-        setPixels = D.keys()
+        setPixels = list(D.keys())
         xs = [x for (x,y) in setPixels]
         ys = [y for (x,y) in setPixels]
         maxx = max(xs)
@@ -143,13 +143,13 @@ class pixelation:
         maxy = max(ys)
         miny = min(ys)
         resultList = []
-        xr = range(minx, maxx+1)
-        for y in xrange(miny, maxy+1):
+        xr = list(range(minx, maxx+1))
+        for y in range(miny, maxy+1):
             yline = list(xr)
             i = 0
             for x in xr:
                 c = blank
-                if D.has_key( (x,y) ):
+                if (x,y) in D:
                     c = mark
                 yline[i] = c
                 i+=1
@@ -157,7 +157,7 @@ class pixelation:
             resultList.insert(0, ystring)
         return "\n".join(resultList)
     def toPNG(this, filename, color=(0x0f,0x11,0xaf), scale=2, speckle=0.3):
-        import KiPNG
+        from . import KiPNG
         D = this.pixelDict()
         return KiPNG.DictToPNG(D, filename, color, scale, speckle)
     
@@ -173,7 +173,7 @@ class font:
     def getGlyph(this, c):
         return this.charMap[c]
     def newGlyph(this, name, ordinal):
-        char = unichr(ordinal)
+        char = chr(ordinal)
         result = this.charMap[char] = glyph(name, this.xwidth, this.yheight, this.dx, this.dy)
         return result
     def loadFilePath(this, path):
@@ -199,7 +199,7 @@ class font:
             if method:
                 index = method(lines, index)
             else:
-                if this.verbose: print "warning: no handler %s" % methodname
+                if this.verbose: print("warning: no handler %s" % methodname)
                 index+=1
     def doSTARTFONT(this, lines, index):
         return index+1
@@ -210,13 +210,13 @@ class font:
     def doSIZE(this, lines, index):
         line = lines[index]
         sstrings = line.split()[1:]
-        sizes = map(int, sstrings)
+        sizes = list(map(int, sstrings))
         (this.points, this.xres, this.yres) = sizes
         return index+1
     def doFONTBOUNDINGBOX(this, lines, index):
         line = lines[index]
         bboxstrings = line.split()[1:]
-        bbox = map(int, bboxstrings)
+        bbox = list(map(int, bboxstrings))
         (xwidth, yheight, dx, dy) = bbox
         this.bounds(xwidth, yheight, dx, dy)
         return index+1
@@ -247,21 +247,21 @@ class font:
                 encoding = int( sline[1] )
                 index += 1
             elif indicator=="SWIDTH":
-                swidth = map( int, sline[1:] )
+                swidth = list(map( int, sline[1:] ))
                 index += 1
             elif indicator=="DWIDTH":
-                dwidth = map( int, sline[1:] )
+                dwidth = list(map( int, sline[1:] ))
                 index += 1
             elif indicator=="BBX":
-                bbx = map( int, sline[1:] )
+                bbx = list(map( int, sline[1:] ))
                 index += 1
             elif indicator=="BITMAP":
                 if encoding is None:
-                    raise ValueError, "no encoding for "+repr(charname)
+                    raise ValueError("no encoding for "+repr(charname))
                 if bbx is None:
-                    raise ValueError, "no bbx for "+repr(charname)
+                    raise ValueError("no bbx for "+repr(charname))
                 if dwidth is None:
-                    raise ValueError, "no dwidth for "+repr(charname)
+                    raise ValueError("no dwidth for "+repr(charname))
                 g = this.newGlyph(charname, encoding)
                 (xwidth, yheight, dx, dy) = bbx
                 g.bounds(xwidth, yheight, dx, dy)
@@ -275,26 +275,26 @@ class font:
                     line = lines[index].strip().upper()
             else:
                 if this.verbose:
-                    print "don't understand charline", repr(line)
+                    print("don't understand charline", repr(line))
                 index += 1
         if g is None:
-            raise ValueError, "STARTCHAR failed to generate a glyph: "+repr(charname)
+            raise ValueError("STARTCHAR failed to generate a glyph: "+repr(charname))
         return index+1
     def doENDFONT(this, lines, index):
         return index+1
 
 def test1():
-    ks = bitIndexMap.keys()
+    ks = list(bitIndexMap.keys())
     ks.sort()
     for k in ks:
-        print bitIndexMap[k]
+        print(bitIndexMap[k])
     fn = font()
     fn.loadFilePath("cursive.bdf")
     g = fn.getGlyph("w")
     g.display()
     
 def test0():
-    from getparm import getparm
+    from .getparm import getparm
     import sys
     args = sys.argv
     png = getparm(args, "--png")
@@ -306,7 +306,7 @@ def test0():
     if png:
         p.toPNG(png)
     else:
-        print p.display()
+        print(p.display())
 
 if __name__=="__main__":
     test0()

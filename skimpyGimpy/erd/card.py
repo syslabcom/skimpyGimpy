@@ -7,9 +7,9 @@ MAXS = [1, "many"]
 class Cardinality:
     def __init__(self, minimum, maximum, upx, upy, rightx, righty, delta, canvas):
         if minimum not in MINS:
-            raise ValueError, "bad min "+repr((minimum, MINS))
+            raise ValueError("bad min "+repr((minimum, MINS)))
         if maximum not in MAXS:
-            raise ValueError, "bad max "+repr((maximum, MAXS))
+            raise ValueError("bad max "+repr((maximum, MAXS)))
         assert abs(upx*rightx + upy*righty)<0.01, "ups and rights must be orthogonal"
         (self.minimum, self.maximum, self.upx, self.upy, self.rightx, self.righty, self.delta) = (
             minimum, maximum, upx, upy, rightx, righty, delta)
@@ -42,7 +42,7 @@ class Cardinality:
             endy = ymin-righty*delta/4
             self.addLines( [ (startx, starty), (endx, endy) ] )
         else:
-            raise ValueError, "unreachable code "+repr(minimum)
+            raise ValueError("unreachable code "+repr(minimum))
         # draw max icon below
         xmax = x + upx*delta/2
         ymax = y + upy*delta/2
@@ -63,7 +63,7 @@ class Cardinality:
             endy = y-righty*delta/2
             self.addLines( [ (startx, starty), (midx, midy), (endx, endy) ] )
         else:
-            raise ValueError, "unreachable code"
+            raise ValueError("unreachable code")
 
 def test(outfile="/tmp/out.png"):
     from skimpyGimpy import canvas
@@ -85,7 +85,7 @@ def test(outfile="/tmp/out.png"):
         (upy, upx, rightx, righty) = (righty, -rightx, upx, upy)
         y += 5*delta
     c.dumpToPNG(outfile)
-    print "test output to", outfile
+    print("test output to", outfile)
 
 if __name__=="__main__":
     test()

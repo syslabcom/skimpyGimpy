@@ -10,7 +10,7 @@ def getparm(L, name, default=None, getValue=True):
             try:
                 v = L[i+1]
             except IndexError:
-                raise ValueError, "parameter %s requires a value" % repr(name)
+                raise ValueError("parameter %s requires a value" % repr(name))
             del L[i+1]
         del L[i]
     return v
@@ -31,18 +31,18 @@ def run():
     if path:
         sys.path.insert(0, path)
     else:
-        print usage
-        raise ValueError, "--path [directory containing bdf.py] missing"
-    import bdf
+        print(usage)
+        raise ValueError("--path [directory containing bdf.py] missing")
+    from . import bdf
     png = getparm(args, "--png")
     if not png:
-        print usage
-        raise ValueError, "--png outfile.png missing"
+        print(usage)
+        raise ValueError("--png outfile.png missing")
     try:
         s = args[1]
     except:
-        print usage
-        raise ValueError, "text missing"
+        print(usage)
+        raise ValueError("text missing")
     fn = bdf.font()
     fontpath = os.path.join(path, "cursive.bdf")
     fn.loadFilePath(fontpath)

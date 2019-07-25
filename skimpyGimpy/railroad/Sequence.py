@@ -1,5 +1,5 @@
-import Literal
-import Configuration
+from . import Literal
+from . import Configuration
 
 class Sequence(Literal.LiteralBase):
     def __init__(self,
@@ -29,8 +29,8 @@ class Sequence(Literal.LiteralBase):
             mx += m.w
 
 def test(fontdir=".", outfile="/tmp/out.png"):
-    from Choose import Choose
-    from Repeat import Repeat
+    from .Choose import Choose
+    from .Repeat import Repeat
     from skimpyGimpy import canvas
     c = canvas.Canvas()
     c.addFont("propell", fontdir+"/propell.bdf")
@@ -41,7 +41,7 @@ def test(fontdir=".", outfile="/tmp/out.png"):
     ch2 = Sequence([ch, l3, l2], c)
     ch2.drawAt(20,100)
     c.dumpToPNG(outfile)
-    print "test output to", outfile
+    print("test output to", outfile)
 
 if __name__=="__main__":
     test()

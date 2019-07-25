@@ -30,14 +30,14 @@ class stateBoundary:
                 if split[0].upper() == "END":
                     done = True
                 else:
-                    floats = map(float, split)
+                    floats = list(map(float, split))
                     latlon = floats[-2:]
                     lat = -1
                     if len(latlon)>1:
                         (lat, lon) = latlon
                     # ignore if latitude is positive
                     if lat>0:
-                        print "WARNING: IGNORING LATITUDE", (this.identity, split)
+                        print("WARNING: IGNORING LATITUDE", (this.identity, split))
                         this.d = {}
                         return True
                     count = len(d)
@@ -47,9 +47,9 @@ class stateBoundary:
         return True
     def prepare(this):
         d = this.d
-        r = range(len(d))
+        r = list(range(len(d)))
         pairs = list(r)
-        print this.identity, len(d), d[0], d[1], d[2], d[3]
+        print(this.identity, len(d), d[0], d[1], d[2], d[3])
         minlat = maxlat = d[0][0]
         minlon = maxlon = d[0][1]
         for i in r:
@@ -82,12 +82,12 @@ class stateBoundary:
             slat = int(lat*scaleFactor)
             slon = int(lon*scaleFactor)
             slatlon = (slat, slon)
-            if not (pointsToIndex.has_key( slatlon )):
+            if not (slatlon in pointsToIndex):
                 index = len(pointsToIndex)
                 pointsToIndex[slatlon] = index
                 indexToPoints[index] = slatlon
                 #print index, slatlon
-        r = range(len(pointsToIndex))
+        r = list(range(len(pointsToIndex)))
         plotpoints = list(r)
         for i in r:
             plotpoints[i] = indexToPoints[i]
@@ -101,7 +101,7 @@ class stateBoundary:
             (x,y) = points[0]
             canvas.addCircle( x, y, 1)
         else:
-            print "NO POINTS?", this.identity, points
+            print("NO POINTS?", this.identity, points)
     def label(this, canvas, stringLabel=None):
         points = this.plotpoints
         if len(points)>0:
@@ -129,7 +129,7 @@ def dumpBordersToPNG(borders, name, colorV):
         allcoords.extend(border.pairs)
     mE = maxExtent(allcoords)
     scaleFactor = 100.0/mE
-    print filename, scaleFactor
+    print(filename, scaleFactor)
     c = canvas.Canvas()
     c.setColorV(colorV)
     for border in borders:
@@ -159,25 +159,25 @@ def setNames(borderDictionary):
             dummy2 = f.readline()
             if border:
                 border.setName(name, fips)
-                print "setting", identity, name, fips
+                print("setting", identity, name, fips)
                 fipsnum = border.fipsNum
                 fipsL = fipsDict.get(fipsnum, [])
                 fipsL.append(border)
                 fipsDict[fipsnum] = fipsL
                 count += 1
-    print "set", count, "names"
+    print("set", count, "names")
     return fipsDict
 
 def test1():
     f = open(filename)
     state = stateBoundary()
     state.parse(f)
-    print "got", len(state.d), "points"
+    print("got", len(state.d), "points")
     state.prepare()
-    print "dimensions", (state.minlat, state.maxlat), (state.minlon, state.maxlon), (state.maxlat-state.minlat,
-                                                                                     state.maxlon-state.minlon)
+    print("dimensions", (state.minlat, state.maxlat), (state.minlon, state.maxlon), (state.maxlat-state.minlat,
+                                                                                     state.maxlon-state.minlon))
     state.preplot()
-    print "plot points", len(state.plotpoints)
+    print("plot points", len(state.plotpoints))
     from skimpyGimpy import canvas
     c = canvas.Canvas()
     c.setColor(255,0,0)
@@ -199,7 +199,7 @@ def getStates():
         else:
             state.prepare()
             idDict[state.identity] = state
-            print state.identity, "parsed"
+            print(state.identity, "parsed")
     fipsDict = setNames(idDict)
     return (idDict, fipsDict)
 
@@ -218,13 +218,13 @@ def plotStates(outfile="AllStates.png", jsFile="AllStates.js", scaleFactor=5.0):
     colors2 = [ ( int(random.uniform(128,256)), int(random.uniform(0,128)), int(random.uniform(0,128) )) for
                x in range(40)]
     count = 0
-    for fipsNum in fipsDict.keys():
+    for fipsNum in list(fipsDict.keys()):
         borders = fipsDict[fipsNum]
         border0 = borders[0]
         colorV = random.choice(colors)
         c.setColorV( colorV )
         name = border0.name
-        print "plotting", fipsNum, name, colorV
+        print("plotting", fipsNum, name, colorV)
         c.setCallBack(border0.name)
         for border in borders:
             border.replot(scaleFactor)

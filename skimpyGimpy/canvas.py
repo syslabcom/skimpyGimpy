@@ -39,9 +39,9 @@ def clockwise(points):
 
 class Shape:
     def __init__(this):
-        raise ValueError, "virtual superclass"
+        raise ValueError("virtual superclass")
     def testFunction(this, point):
-        raise ValueError, "virtual superclass"
+        raise ValueError("virtual superclass")
     def convert(this, point):
         "for transforms"
         return point
@@ -51,7 +51,7 @@ class Shape:
         "return negative if outside, positive inside, 0 if crossing"
         (x,y) = point
         vertices = [ (x+cx, y+cy) for (cx,cy) in CORNERS ]
-        tests = map(this.testFunction, vertices)
+        tests = list(map(this.testFunction, vertices))
         maxtest = max(tests)
         mintest = min(tests)
         if maxtest<0:
@@ -70,8 +70,8 @@ class Shape:
             xmax = int(ceil(xmax))
             ymax = int(ceil(ymax))
         #pr "min/max", ( (xmin, ymin), (xmax, ymax) ) 
-        xr = xrange(xmin, xmax+1)
-        yr = xrange(ymin, ymax+1)
+        xr = range(xmin, xmax+1)
+        yr = range(ymin, ymax+1)
         #pr "ranges", xr, yr
         result = {}
         for y in yr:
@@ -102,13 +102,13 @@ class Shape:
         D = {}
         scanLines = this.scanLines(xmin, xmax, ymin, ymax)
         ##pr "scanlines", scanLines
-        for y in scanLines.keys():
+        for y in list(scanLines.keys()):
             for (xstart, xend) in scanLines[y]:
-                for x in xrange(xstart, xend):
+                for x in range(xstart, xend):
                     D[(x,y)] = mapValue
         return D
     def bbox(this):
-        raise ValueError, "virtual superclass"
+        raise ValueError("virtual superclass")
 
 class Circle(Shape):
     def __init__(this, center, radius):
@@ -132,7 +132,7 @@ class Circle(Shape):
         # this is a hack... there is an off by one issue
         result1 = Shape.scanLines(this, xmin, xmax, ymin, ymax)
         result = {}
-        for y in result1.keys():
+        for y in list(result1.keys()):
             pairs = result1[y]
             result[y] = [ (x1+1,x2) for (x1,x2) in pairs ]
         return result
@@ -149,7 +149,7 @@ class Circle(Shape):
         ##pr "center", (cx,cy)
         result = {}
         radius2 = this.radius2
-        for y in xrange(ymin, ymax+1):
+        for y in range(ymin, ymax+1):
             dy = y-cy
             dx2 = radius2 - dy*dy
             ##pr "(dy,dx2,radius2)", (y,dy,dx2, radius2)
@@ -167,9 +167,9 @@ class Rectangle(Shape):
         ##pr "rect", (lowerLeft, width, height)
         (llx, lly) = (this.llx, this.lly) = lowerLeft
         if width<0:
-            raise ValueError, "width must be positive "+repr(width)
+            raise ValueError("width must be positive "+repr(width))
         if height<0:
-            raise ValueError, "height must be positive "+repr(height)
+            raise ValueError("height must be positive "+repr(height))
         this.width = width
         this.height = height
         this.wx = llx+width
@@ -281,7 +281,7 @@ class Affine0(Shape):
         (p1, p2) = ((x1,y1), (x2,y2)) = this.shape.bbox()
         vertices = (p1, p2, (x1,y2), (x2,y1))
         ##pr "vertices", vertices
-        mvertices = map(this.convert, vertices)
+        mvertices = list(map(this.convert, vertices))
         #print "mvertices", mvertices
         xs = [x for (x,y) in mvertices]
         ys = [y for (x,y) in mvertices]
@@ -297,7 +297,7 @@ def compose(coef1, coef2):
     m2 = (cx, cy, (0,0,1))
     (cx, cy) = coef2
     m1 = (cx, cy, (0,0,1))
-    r3 = range(3)
+    r3 = list(range(3))
     mout = [ [0]*3, [0]*3, [0]*3 ]
     for i in r3:
         for j in r3:
@@ -387,7 +387,7 @@ class Canvas:
         this.backgroundColor = (r,g,b)
     def crop(this, minx, miny, maxx, maxy):
         if minx>=maxx or miny>=maxy:
-            raise ValueError, "bad bounds: "+repr((minx, miny, maxx, maxy))
+            raise ValueError("bad bounds: "+repr((minx, miny, maxx, maxy)))
         this.minx = minx 
         this.miny = miny
         this.maxx = maxx
@@ -395,15 +395,15 @@ class Canvas:
     def addFont(this, name, path):
         import os
         if not os.path.exists(path):
-            raise ValueError, "no such file "+repr(path)
+            raise ValueError("no such file "+repr(path))
         this.fontNameToPath[name] = path
         if this.fontName is None:
             this.setFont(name)
     def getFont(this, name):
-        import bdf
+        from . import bdf
         fontpath = this.fontNameToPath.get(name, None)
         if fontpath is None:
-            raise ValueError, "no such font name added "+repr(name)
+            raise ValueError("no such font name added "+repr(name))
         font = this.fontNameToFont.get(name, None)
         if font is None:
             font = bdf.font()
@@ -413,9 +413,9 @@ class Canvas:
     def setFont(this, name, scale=1.0, radius=None):
         fontpath = this.fontNameToPath.get(name, None)
         if fontpath is None:
-            raise ValueError, "no such font name added "+repr(name)
+            raise ValueError("no such font name added "+repr(name))
         if scale<=0:
-            raise ValueError, "too small scale "+repr(scale)
+            raise ValueError("too small scale "+repr(scale))
         if radius is None:
             radius = scale/2.0 + this.fontRadiusEnhancement
         this.fontRadius = radius
@@ -434,7 +434,7 @@ class Canvas:
         this.stateStack.append(state)
     def restoreState(this):
         if not this.stateStack:
-            raise ValueError, "no state saved on state stack"
+            raise ValueError("no state saved on state stack")
         state = this.stateStack[-1]
         del this.stateStack[-1]
         this.paintColor = state["paintColor"] 
@@ -471,25 +471,25 @@ class Canvas:
         #print "setColorV", rgb
         for i in rgb:
             if i!=int(i):
-                raise ValueError, "color component must be int: "+repr(i)
+                raise ValueError("color component must be int: "+repr(i))
             if i<0 or i>255:
-                raise ValueError, "bad color component "+repr(i)
-        if this.rcolors.has_key(rgb):
+                raise ValueError("bad color component "+repr(i))
+        if rgb in this.rcolors:
             colorIndex = this.rcolors[rgb]
         else:
             colorIndex = len(this.colors)
             if colorIndex>255:
-                raise ValueError, "too many colors at "+repr(rgb)
+                raise ValueError("too many colors at "+repr(rgb))
             this.rcolors[rgb] = colorIndex
             this.colors[colorIndex] = rgb
         this.paintColor = colorIndex
     def setCap(this, lineCap):
         if lineCap<0:
-            raise ValueError, "lineCap cannot be negative "+repr(lineCap)
+            raise ValueError("lineCap cannot be negative "+repr(lineCap))
         this.lineCap = lineCap
     def setWidth(this, width):
         if width<0:
-            raise ValueError, "width cannot be negative "+repr(width)
+            raise ValueError("width cannot be negative "+repr(width))
         this.lineWidth = width
     def addLine(this, startPoint, endPoint):
         width = this.lineWidth
@@ -545,9 +545,9 @@ class Canvas:
             if x1>x2:
                 #(firstx, lastx) = (lastx, firstx)
                 increment = -1
-                xs = xrange(lastx, firstx)
+                xs = range(lastx, firstx)
             else:
-                xs = xrange(firstx, lastx)
+                xs = range(firstx, lastx)
             for x in xs:
                 ys = borders.get(x)
                 if ys is None:
@@ -564,12 +564,12 @@ class Canvas:
         # plot pixels between border points
         D = {}
         color = this.paintColor
-        xs = borders.keys()
+        xs = list(borders.keys())
         xs.sort()
         for x in xs:
             xborders = borders[x]
-            debugitems = xborders.items()
-            ys = xborders.keys()
+            debugitems = list(xborders.items())
+            ys = list(xborders.keys())
             #ys.sort()
             # since polygon is clockwise, first point should always be
             #p "plotting", x#, ys
@@ -584,13 +584,13 @@ class Canvas:
                     #raise ValueError, "negative summation? at "+ repr((x,y))
                     #p "WARNING: negative summation? at "+ repr((x,y, summation))
                 summation += xborders.get(y, 0)
-                if xborders.has_key(y) or summation>0:
+                if y in xborders or summation>0:
                     point = (x,y)
                     D[ point ] = color
                     #p "point", point, summation
             if summation:
                 #p "for", x, "final sum is", summation
-                items = xborders.items()
+                items = list(xborders.items())
                 items.sort()
                 #p "bad summation %s %s"%(summation,items)
                 raise "bad summation %s %s"%(summation,items)
@@ -604,7 +604,7 @@ class Canvas:
         C = Circle((cx,cy), radius)
         this.plot(C)
     def addText(this, x, y, text, shiftWidth=0.0):
-        import bdf
+        from . import bdf
         fontName = this.fontName
         fontScale = this.fontScale
         radius = this.fontRadius
@@ -621,7 +621,7 @@ class Canvas:
         T = this.transformShape(shape)
         color = this.paintColor
         if color is None:
-            raise ValueError, "canvas color not set"
+            raise ValueError("canvas color not set")
         d = T.points(color)
         this.updatePixels(d)
     def updatePixels(this, d):
@@ -631,16 +631,16 @@ class Canvas:
         # record callback info if set.
         if fc is not None:
             cb = this.callbacks
-            for point in d.keys():
+            for point in list(d.keys()):
                 cb[point] = fc
     def plotDict(this, startx, starty, D, radius, scaleFactor):
         "plot the (x,y) key points of a dictionary as circles (for pixelized font rendering, for example)"
         C = Circle((0,0), radius)
-        pts = C.points(1).keys()
+        pts = list(C.points(1).keys())
         color = this.paintColor
         #pixels = this.pixels
         newpixels = {}
-        for (x,y) in D.keys():
+        for (x,y) in list(D.keys()):
             sx = startx+scaleFactor*x
             sy = starty+scaleFactor*y
             (dx,dy) = this.convert( (sx,sy) )
@@ -656,10 +656,10 @@ class Canvas:
         fillColorIndex = this.paintColor
         stopIndex = None
         if stopColorRGB:
-            if this.rcolors.has_key(stopColorRGB):
+            if stopColorRGB in this.rcolors:
                 stopIndex = this.rcolors[stopColorRGB]
             else:
-                raise ValueError, "stop color has not yet been used "+repr(rgb)
+                raise ValueError("stop color has not yet been used "+repr(rgb))
         (cx,cy) = this.convert( (x,y) )
         minx = this.minx
         maxx = this.maxx
@@ -677,10 +677,10 @@ class Canvas:
         while stack:
             count += 1
             if countLimit and countLimit<count:
-                raise ValueError, "fill iteration limit exceeded (sanity check).  rerun with countLimit=None if you dare."
+                raise ValueError("fill iteration limit exceeded (sanity check).  rerun with countLimit=None if you dare.")
             p = stack[-1]
             del stack[-1]
-            if done.has_key(p):
+            if p in done:
                 continue
             done[p] = True
             doFill = True
@@ -706,19 +706,19 @@ class Canvas:
                 (px,py) = p
                 for delta in (-1,1):
                     pa = (px+delta, py)
-                    if not done.has_key(pa):
+                    if pa not in done:
                         #print "addint", pa
                         stack.append(pa)
                     pb = (px, py+delta)
-                    if not done.has_key(pb):
+                    if pb not in done:
                         #print "adding", pb
                         stack.append(pb)
         this.updatePixels(newpixels)
     def dumpToPNG(this, filename):
-        import KiPNG
+        from . import KiPNG
         this.filename = filename
         if not this.pixels:
-            raise ValueError, "no pixels plotted"
+            raise ValueError("no pixels plotted")
         transparentIndex = 0
         if this.backgroundColor is not None:
             #print "cancelling transparency"
@@ -732,8 +732,8 @@ class Canvas:
         "dictionary of y-->[ (xstart, xend, callbackstring), ... ] for defined callbacks"
         # KISS, probably could be made faster for large images
         cb = this.callbacks
-        points = cb.keys()
-        allpoints = this.pixels.keys()
+        points = list(cb.keys())
+        allpoints = list(this.pixels.keys())
         #points.sort()
         xs = [x for (x,y) in allpoints]
         ys = [y for (x,y) in allpoints]
@@ -754,8 +754,8 @@ class Canvas:
         #print this.minx, this.maxx, this.miny, this.maxy, this.maxx-this.minx, this.maxy-this.miny
         bcb = this.backgroundCallback
         result = {}
-        rx = range(minx, maxx+1)
-        ry = range(miny, maxy+1)
+        rx = list(range(minx, maxx+1))
+        ry = list(range(miny, maxy+1))
         for y in ry:
             startx = minx
             lastcallback = None
@@ -783,7 +783,7 @@ class Canvas:
         return result
     def jsRunLengths(this):
         D = this.getCallbackRunLengthDictionary()
-        ys = D.keys()
+        ys = list(D.keys())
         ys.sort()
         ys.reverse()
         L = []
@@ -830,15 +830,15 @@ def runlengthDebugPlot(D,xmin,ymin,xmax,ymax):
     c.addRect(0,0,2,2)
     c.addRect(xmax-xmin-2,ymax-ymin-2,2,2)
     c.setColor(0, 0xff, 0)
-    for y in D.keys():
+    for y in list(D.keys()):
         for (xstart, xend, dummy) in D[y]:
             c.addCircle(xstart,y,1)
     c.setColor(0xff, 0, 0)
-    for y in D.keys():
+    for y in list(D.keys()):
         for (xstart, xend, dummy) in D[y]:
             c.addCircle(xend,y,1)
     c.dumpToPNG("runlengths.png")
-    print "wrote runlengths.png"
+    print("wrote runlengths.png")
 
 HTMLTEMPLATE = """
 
@@ -971,7 +971,7 @@ def fillCircleTest(outfile="fcirc.png"):
     radius = 20
     steps = 10
     delta = 8*math.pi/steps
-    poly = [ ( (radius-i*delta)*math.cos(i*delta), (radius-i*delta)*math.sin(i*delta) ) for i in xrange(steps) ]
+    poly = [ ( (radius-i*delta)*math.cos(i*delta), (radius-i*delta)*math.sin(i*delta) ) for i in range(steps) ]
     c = Canvas()
     c.lineWidth = 1
     c.setColor(0,77,77)
@@ -981,7 +981,7 @@ def fillCircleTest(outfile="fcirc.png"):
     c.setColor(77,77,77)
     c.addLines(poly, closed=True)
     c.setColor(0,0,77)
-    rr = range(-radius/2,radius/2)
+    rr = list(range(-radius/2,radius/2))
     for i in rr:
         for j in rr:
             c.addRect(i*2,j*2,0,0)
@@ -992,7 +992,7 @@ def fillCircleTest(outfile="fcirc.png"):
     c.dumpToPNG(outfile)
     
 def fillTest(outfile="fill.png", doStopColor=False):
-    print "writing", outfile
+    print("writing", outfile)
     c = Canvas()
     c.lineWidth = 4
     c.setColor(0xff,77,77)
@@ -1008,7 +1008,7 @@ def fillTest(outfile="fill.png", doStopColor=False):
     c.dumpToPNG(outfile)
     
 def fillTest0(outfile="fill0.png", doStopColor=True):
-    print "writing", outfile
+    print("writing", outfile)
     c = Canvas()
     c.lineWidth = 1
     c.setColor(77,77,77)
@@ -1022,7 +1022,7 @@ def fillTest0(outfile="fill0.png", doStopColor=True):
     c.dumpToPNG(outfile)
 
 def test1(fn="test1.png"):
-    print "writing", fn
+    print("writing", fn)
     c = Canvas()
     c.lineCap = 20
     for (lw,closed,color) in [(12,False,(0xff,0,0)), (4,True,(0,0xff,0xff))]:
@@ -1032,7 +1032,7 @@ def test1(fn="test1.png"):
     c.dumpToPNG(fn)
 
 def test0(fn="test0.png", fontdir="../fonts/"):
-    print "writing", fn
+    print("writing", fn)
     c = Canvas()
     c.setBackgroundColor(10,50,99)
     c.setWidth(10)
@@ -1068,7 +1068,7 @@ def test0(fn="test0.png", fontdir="../fonts/"):
     c.dumpToPNG(fn)
 
 def ctest(fn="ctest.png"):
-    print "writing", fn
+    print("writing", fn)
     c = Canvas()
     c.setColor(77,88,22)
     c.addCircle( 10, 0, 5)
@@ -1085,7 +1085,7 @@ def ctest(fn="ctest.png"):
     c.dumpToPNG(fn)
 
 def ctest2(fn="ctest2.png"):
-    print "writing", fn
+    print("writing", fn)
     c = Canvas()
     c.setColor(77,88,22)
     c.addCircle(0, 0, 50)
@@ -1098,8 +1098,8 @@ def ctest2(fn="ctest2.png"):
     c.dumpToPNG(fn)
 
 def fonttest000(filename="fonttest000.png", fontdir="../fonts/"):
-    import bdf
-    print "writing", filename
+    from . import bdf
+    print("writing", filename)
     fn = bdf.font()
     fn.loadFilePath(fontdir+"cursive.bdf")
     p = bdf.pixelation(fn, "100,100")
@@ -1122,7 +1122,7 @@ def cltest(fn="cltest.png"):
     c.dumpToPNG(fn)
 
 def fontsTest(filename="fontsTest.png", fontdir="../fonts/"):
-    print "writing", filename, "SSLLOOWWWLLLLYYYYYY"
+    print("writing", filename, "SSLLOOWWWLLLLYYYYYY")
     fontnames = [#"atari-small.bdf",
              "cursive.bdf",
              "radon-wide.bdf",
@@ -1136,10 +1136,10 @@ def fontsTest(filename="fontsTest.png", fontdir="../fonts/"):
     c.setColor(77,88,22)
     scale = 1.44
     for fn in fontnames:
-        print "adding font", fn
+        print("adding font", fn)
         c.addFont(fn, fontdir+fn)
     for (rotate, fradius) in ((0,0.8), (90,0.8), (135, 0.8)):
-        print "rotating", rotate
+        print("rotating", rotate)
         y = 0
         radius = scale*fradius
         c.rotate(rotate)
@@ -1147,7 +1147,7 @@ def fontsTest(filename="fontsTest.png", fontdir="../fonts/"):
             c.setFont(fn, scale, radius)
             y-=30
             c.addText(0,scale*y, "abcdefghijklmnop01234567: "+fn)
-    print "now dumping"
+    print("now dumping")
     c.crop(-400,-400,400,400)
     c.dumpToPNG(filename)
 

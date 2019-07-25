@@ -1,9 +1,9 @@
 
-import config
-import entity
-import relationship
-import attribute
-import path
+from . import config
+from . import entity
+from . import relationship
+from . import attribute
+from . import path
 
 class Drawing:
     def __init__(self, canvas, cfg=None):
@@ -45,7 +45,7 @@ class Drawing:
         self.namesToAttributeAndPath[(name, entityName)] = (theAttribute, thePath)
     def prepare(self):
         "assign all paths, avoiding obstacles"
-        participations = self.nameRoleToPath.keys()
+        participations = list(self.nameRoleToPath.keys())
         participations.sort()
         for p in participations:
             (rname, rolename, ename) = p
@@ -58,7 +58,7 @@ class Drawing:
             (start, end, points) = path.getPath(origins, destinations, barriers, self.cfg.delta)
             thePath = path.CardinalPath(start, points, end, minimum, maximum, self.canvas, origins, destinations)
             self.nameRoleToPath[ (rname, rolename, ename) ] = (thePath, minimum, maximum)
-        attributePairs = self.namesToAttributeAndPath.keys()
+        attributePairs = list(self.namesToAttributeAndPath.keys())
         attributePairs.sort()
         for p in attributePairs:
             (name, entityName) = p
@@ -73,38 +73,38 @@ class Drawing:
             thePath = path.CardinalPath(start, points, end, None, None, self.canvas, origins, destinations)
             self.namesToAttributeAndPath[(name, entityName)] = (theAttribute, thePath)
     def draw(self):
-        for e in self.nameToEntity.values():
+        for e in list(self.nameToEntity.values()):
             e.draw()
-        for r in self.nameToRelationship.values():
+        for r in list(self.nameToRelationship.values()):
             r.draw()
-        for (a, p) in self.namesToAttributeAndPath.values():
+        for (a, p) in list(self.namesToAttributeAndPath.values()):
             a.draw()
-        for (p,minimum,maximum) in self.nameRoleToPath.values():
+        for (p,minimum,maximum) in list(self.nameRoleToPath.values()):
             p.draw()
-        for (a, p) in self.namesToAttributeAndPath.values():
+        for (a, p) in list(self.namesToAttributeAndPath.values()):
             p.draw()
     def allBarriers(self, origins, destinations):
         barriers = {}
-        for e in self.nameToEntity.values():
+        for e in list(self.nameToEntity.values()):
             barriers.update(e.barriers())
-        for r in self.nameToRelationship.values():
+        for r in list(self.nameToRelationship.values()):
             barriers.update(r.barriers())
-        for (a, p) in self.namesToAttributeAndPath.values():
+        for (a, p) in list(self.namesToAttributeAndPath.values()):
             barriers.update(a.barriers())
-        for p in origins.keys()+destinations.keys():
-            if barriers.has_key(p):
+        for p in list(origins.keys())+list(destinations.keys()):
+            if p in barriers:
                 del barriers[p]
-        for (a, p) in self.namesToAttributeAndPath.values():
+        for (a, p) in list(self.namesToAttributeAndPath.values()):
             if p is not None:
                 barriers.update(p.barriers())
-        for (p, minimum, maximum) in self.nameRoleToPath.values():
+        for (p, minimum, maximum) in list(self.nameRoleToPath.values()):
             if p is not None:
                 barriers.update(p.barriers())
         return barriers
     
 def test(fontdir=".", outfile="/tmp/out.png"):
     from skimpyGimpy import canvas
-    from entity import Entity
+    from .entity import Entity
     c = canvas.Canvas()
     #c.addFont("propell", fontdir+"/5x7.bdf")
     c.addFont("propell", fontdir+"/propell.bdf")
@@ -132,11 +132,11 @@ def test(fontdir=".", outfile="/tmp/out.png"):
     d.prepare()
     d.draw()
     c.dumpToPNG(outfile)
-    print "test output to", outfile
+    print("test output to", outfile)
    
 def test2(fontdir=".", outfile="/tmp/out2.png"):
     from skimpyGimpy import canvas
-    from entity import Entity
+    from .entity import Entity
     c = canvas.Canvas()
     #c.addFont("propell", fontdir+"/5x7.bdf")
     c.addFont("propell", fontdir+"/propell.bdf")
@@ -166,11 +166,11 @@ def test2(fontdir=".", outfile="/tmp/out2.png"):
     d.prepare()
     d.draw()
     c.dumpToPNG(outfile)
-    print "test output to", outfile
+    print("test output to", outfile)
     
 def test3(fontdir=".", outfile="/tmp/out3.png"):
     from skimpyGimpy import canvas
-    from entity import Entity
+    from .entity import Entity
     c = canvas.Canvas()
     c.addFont("propell", fontdir+"/propell.bdf")
     d = Drawing(c)
@@ -199,7 +199,7 @@ def test3(fontdir=".", outfile="/tmp/out3.png"):
     d.prepare()
     d.draw()
     c.dumpToPNG(outfile)
-    print "test output to", outfile
+    print("test output to", outfile)
 
 if __name__=="__main__":
     test3()

@@ -1,8 +1,8 @@
 
-import Configuration
-from Nonterminal import Nonterminal
-import Literal
-from Sequence import Sequence
+from . import Configuration
+from .Nonterminal import Nonterminal
+from . import Literal
+from .Sequence import Sequence
 
 class Define(Literal.LiteralBase):
     def __init__(self, nonterm, definition, canvas, config=None, indent=50):
@@ -18,12 +18,12 @@ class Define(Literal.LiteralBase):
         self.nonterm.drawAt(x, y+self.definition.h, test=test)
 
 def test(fontdir=".", outfile="/tmp/out.png"):
-    from Choose import Choose
-    from Repeat import Repeat
-    from RepeatDelimited import RepeatDelimited
-    from Optional import Optional
-    from Choose import Choose
-    from Sequence import Sequence
+    from .Choose import Choose
+    from .Repeat import Repeat
+    from .RepeatDelimited import RepeatDelimited
+    from .Optional import Optional
+    from .Choose import Choose
+    from .Sequence import Sequence
     from skimpyGimpy import canvas
     c = canvas.Canvas()
     c.addFont("propell", fontdir+"/propell.bdf")
@@ -49,7 +49,7 @@ def test(fontdir=".", outfile="/tmp/out.png"):
     D3 = Define("PAGE", [pageenv, pageparams, pagecomponents], c)
     D3.drawAt(0,350)
     c.dumpToPNG(outfile)
-    print "output to", outfile
+    print("output to", outfile)
 
 if __name__=="__main__":
     test()
