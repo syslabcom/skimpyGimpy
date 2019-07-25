@@ -1,0 +1,512 @@
+testarea -583.128708688
+
+point (2.1191934048359875, 1.5396841336818239)
+last (20.0, 0.0)
+firstx 3 lastx 20
+point (3, 1) 1
+point (4, 1) 1
+point (5, 1) 1
+point (6, 1) 1
+point (7, 1) 1
+point (8, 1) 1
+point (9, 0) 1
+point (10, 0) 1
+point (11, 0) 1
+point (12, 0) 1
+point (13, 0) 1
+point (14, 0) 1
+point (15, 0) 1
+point (16, 0) 1
+point (17, 0) 1
+point (18, 0) 1
+point (19, 0) 1
+
+point (-0.032815436422544406, -0.10099552844288583)
+last (2.1191934048359875, 1.5396841336818239)
+firstx 0 lastx 3
+point (0, 0) 1
+point (1, 0) 1
+point (2, 1) 1
+
+point (0.74382897906764078, -2.2892702033503594)
+last (-0.032815436422544406, -0.10099552844288583)
+firstx 1 lastx 0
+point (0, 0) -1
+
+point (-3.9806510259423238, 2.8921122594952728)
+last (0.74382897906764078, -2.2892702033503594)
+firstx -3 lastx 1
+point (-3, 1) 1
+point (-2, 0) 1
+point (-1, 0) 1
+point (0, -1) 1
+
+point (7.4336293856408275, -3.6413079110465971e-015)
+last (-3.9806510259423238, 2.8921122594952728)
+firstx 8 lastx -3
+point (-3, 2) -1
+point (-2, 2) -1
+point (-1, 2) -1
+point (0, 1) -1
+point (1, 1) -1
+point (2, 1) -1
+point (3, 1) -1
+point (4, 0) -1
+point (5, 0) -1
+point (6, 0) -1
+point (7, 0) -1
+
+point (-8.0472139797945363, -5.8466431882799981)
+last (7.4336293856408275, -3.6413079110465971e-015)
+firstx -8 lastx 8
+point (-8, -5) 1
+point (-7, -5) 1
+point (-6, -5) 1
+point (-5, -4) 1
+point (-4, -4) 1
+point (-3, -3) 1
+point (-2, -3) 1
+point (-1, -3) 1
+point (0, -2) 1
+point (1, -2) 1
+point (2, -2) 1
+point (3, -1) 1
+point (4, -1) 1
+point (5, 0) 1
+point (6, 0) 1
+point (7, 0) 1
+
+point (3.8504066410283926, 11.850333130523337)
+last (-8.0472139797945363, -5.8466431882799981)
+firstx 4 lastx -8
+point (-8, -5) -1
+point (-7, -4) -1
+point (-6, -2) -1
+point (-5, -1) -1
+point (-4, 0) -1
+point (-3, 1) -1
+point (-2, 3) -1
+point (-1, 4) -1
+point (0, 6) -1
+point (1, 7) -1
+point (2, 9) -1
+point (3, 10) -1
+
+point (4.6270510565185727, -14.240598862316583)
+last (3.8504066410283926, 11.850333130523337)
+firstx 5 lastx 4
+point (4, 6) -1
+
+point (-14.147058410572843, 10.2784395814571)
+last (4.6270510565185727, -14.240598862316583)
+firstx -14 lastx 5
+point (-14, 10) 1
+point (-13, 8) 1
+point (-12, 7) 1
+point (-11, 6) 1
+point (-10, 4) 1
+point (-9, 3) 1
+point (-8, 2) 1
+point (-7, 0) 1
+point (-6, 0) 1
+point (-5, -1) 1
+point (-4, -2) 1
+point (-3, -4) 1
+point (-2, -5) 1
+point (-1, -6) 1
+point (0, -8) 1
+point (1, -9) 1
+point (2, -10) 1
+point (3, -12) 1
+point (4, -13) 1
+
+point (20.0, 0.0)
+last (-14.147058410572843, 10.2784395814571)
+firstx 20 lastx -14
+point (-14, 10) -1
+point (-13, 9) -1
+point (-12, 9) -1
+point (-11, 9) -1
+point (-10, 9) -1
+point (-9, 8) -1
+point (-8, 8) -1
+point (-7, 8) -1
+point (-6, 7) -1
+point (-5, 7) -1
+point (-4, 7) -1
+point (-3, 6) -1
+point (-2, 6) -1
+point (-1, 6) -1
+point (0, 6) -1
+point (1, 5) -1
+point (2, 5) -1
+point (3, 5) -1
+point (4, 4) -1
+point (5, 4) -1
+point (6, 4) -1
+point (7, 3) -1
+point (8, 3) -1
+point (9, 3) -1
+point (10, 3) -1
+point (11, 2) -1
+point (12, 2) -1
+point (13, 2) -1
+point (14, 1) -1
+point (15, 1) -1
+point (16, 1) -1
+point (17, 0) -1
+point (18, 0) -1
+point (19, 0) -1
+plotting -14
+[(10, 0)]
+running from 10 10
+point (-14, 10) 0
+plotting -13
+[(8, 1), (9, -1)]
+running from 8 9
+point (-13, 8) 1
+point (-13, 9) 0
+plotting -12
+[(9, -1), (7, 1)]
+running from 7 9
+point (-12, 7) 1
+point (-12, 8) 1
+point (-12, 9) 0
+plotting -11
+[(9, -1), (6, 1)]
+running from 6 9
+point (-11, 6) 1
+point (-11, 7) 1
+point (-11, 8) 1
+point (-11, 9) 0
+plotting -10
+[(9, -1), (4, 1)]
+running from 4 9
+point (-10, 4) 1
+point (-10, 5) 1
+point (-10, 6) 1
+point (-10, 7) 1
+point (-10, 8) 1
+point (-10, 9) 0
+plotting -9
+[(8, -1), (3, 1)]
+running from 3 8
+point (-9, 3) 1
+point (-9, 4) 1
+point (-9, 5) 1
+point (-9, 6) 1
+point (-9, 7) 1
+point (-9, 8) 0
+plotting -8
+[(8, -1), (2, 1), (-5, 0)]
+running from -5 8
+point (-8, -5) 0
+point (-8, 2) 1
+point (-8, 3) 1
+point (-8, 4) 1
+point (-8, 5) 1
+point (-8, 6) 1
+point (-8, 7) 1
+point (-8, 8) 0
+plotting -7
+[(0, 1), (8, -1), (-5, 1), (-4, -1)]
+running from -5 8
+point (-7, -5) 1
+point (-7, -4) 0
+point (-7, 0) 1
+point (-7, 1) 1
+point (-7, 2) 1
+point (-7, 3) 1
+point (-7, 4) 1
+point (-7, 5) 1
+point (-7, 6) 1
+point (-7, 7) 1
+point (-7, 8) 0
+plotting -6
+[(0, 1), (-5, 1), (-2, -1), (7, -1)]
+running from -5 7
+point (-6, -5) 1
+point (-6, -4) 1
+point (-6, -3) 1
+point (-6, -2) 0
+point (-6, 0) 1
+point (-6, 1) 1
+point (-6, 2) 1
+point (-6, 3) 1
+point (-6, 4) 1
+point (-6, 5) 1
+point (-6, 6) 1
+point (-6, 7) 0
+plotting -5
+[(-4, 1), (-1, 0), (7, -1)]
+running from -4 7
+point (-5, -4) 1
+point (-5, -3) 1
+point (-5, -2) 1
+point (-5, -1) 1
+point (-5, 0) 1
+point (-5, 1) 1
+point (-5, 2) 1
+point (-5, 3) 1
+point (-5, 4) 1
+point (-5, 5) 1
+point (-5, 6) 1
+point (-5, 7) 0
+plotting -4
+[(0, -1), (-4, 1), (-2, 1), (7, -1)]
+running from -4 7
+point (-4, -4) 1
+point (-4, -3) 1
+point (-4, -2) 2
+point (-4, -1) 2
+point (-4, 0) 1
+point (-4, 1) 1
+point (-4, 2) 1
+point (-4, 3) 1
+point (-4, 4) 1
+point (-4, 5) 1
+point (-4, 6) 1
+point (-4, 7) 0
+plotting -3
+[(1, 0), (2, -1), (-4, 1), (-3, 1), (6, -1)]
+running from -4 6
+point (-3, -4) 1
+point (-3, -3) 2
+point (-3, -2) 2
+point (-3, -1) 2
+point (-3, 0) 2
+point (-3, 1) 2
+point (-3, 2) 1
+point (-3, 3) 1
+point (-3, 4) 1
+point (-3, 5) 1
+point (-3, 6) 0
+plotting -2
+[(0, 1), (2, -1), (3, -1), (6, -1), (-5, 1), (-3, 1)]
+running from -5 6
+point (-2, -5) 1
+point (-2, -4) 1
+point (-2, -3) 2
+point (-2, -2) 2
+point (-2, -1) 2
+point (-2, 0) 3
+point (-2, 1) 3
+point (-2, 2) 2
+point (-2, 3) 1
+point (-2, 4) 1
+point (-2, 5) 1
+point (-2, 6) 0
+plotting -1
+[(0, 1), (2, -1), (4, -1), (6, -1), (-6, 1), (-3, 1)]
+running from -6 6
+point (-1, -6) 1
+point (-1, -5) 1
+point (-1, -4) 1
+point (-1, -3) 2
+point (-1, -2) 2
+point (-1, -1) 2
+point (-1, 0) 3
+point (-1, 1) 3
+point (-1, 2) 2
+point (-1, 3) 2
+point (-1, 4) 1
+point (-1, 5) 1
+point (-1, 6) 0
+plotting 0
+[(0, 0), (1, -1), (6, -2), (-1, 1), (-8, 1), (-2, 1)]
+running from -8 6
+point (0, -8) 1
+point (0, -7) 1
+point (0, -6) 1
+point (0, -5) 1
+point (0, -4) 1
+point (0, -3) 1
+point (0, -2) 2
+point (0, -1) 3
+point (0, 0) 3
+point (0, 1) 2
+point (0, 2) 2
+point (0, 3) 2
+point (0, 4) 2
+point (0, 5) 2
+point (0, 6) 0
+plotting 1
+[(0, 1), (1, -1), (5, -1), (7, -1), (-9, 1), (-2, 1)]
+running from -9 7
+point (1, -9) 1
+point (1, -8) 1
+point (1, -7) 1
+point (1, -6) 1
+point (1, -5) 1
+point (1, -4) 1
+point (1, -3) 1
+point (1, -2) 2
+point (1, -1) 2
+point (1, 0) 3
+point (1, 1) 2
+point (1, 2) 2
+point (1, 3) 2
+point (1, 4) 2
+point (1, 5) 1
+point (1, 6) 1
+point (1, 7) 0
+plotting 2
+[(1, 0), (5, -1), (-10, 1), (-2, 1), (9, -1)]
+running from -10 9
+point (2, -10) 1
+point (2, -9) 1
+point (2, -8) 1
+point (2, -7) 1
+point (2, -6) 1
+point (2, -5) 1
+point (2, -4) 1
+point (2, -3) 1
+point (2, -2) 2
+point (2, -1) 2
+point (2, 0) 2
+point (2, 1) 2
+point (2, 2) 2
+point (2, 3) 2
+point (2, 4) 2
+point (2, 5) 1
+point (2, 6) 1
+point (2, 7) 1
+point (2, 8) 1
+point (2, 9) 0
+plotting 3
+[(1, 0), (10, -1), (-12, 1), (5, -1), (-1, 1)]
+running from -12 10
+point (3, -12) 1
+point (3, -11) 1
+point (3, -10) 1
+point (3, -9) 1
+point (3, -8) 1
+point (3, -7) 1
+point (3, -6) 1
+point (3, -5) 1
+point (3, -4) 1
+point (3, -3) 1
+point (3, -2) 1
+point (3, -1) 2
+point (3, 0) 2
+point (3, 1) 2
+point (3, 2) 2
+point (3, 3) 2
+point (3, 4) 2
+point (3, 5) 1
+point (3, 6) 1
+point (3, 7) 1
+point (3, 8) 1
+point (3, 9) 1
+point (3, 10) 0
+plotting 4
+[(0, -1), (1, 1), (4, -1), (6, -1), (-13, 1), (-1, 1)]
+running from -13 6
+point (4, -13) 1
+point (4, -12) 1
+point (4, -11) 1
+point (4, -10) 1
+point (4, -9) 1
+point (4, -8) 1
+point (4, -7) 1
+point (4, -6) 1
+point (4, -5) 1
+point (4, -4) 1
+point (4, -3) 1
+point (4, -2) 1
+point (4, -1) 2
+point (4, 0) 1
+point (4, 1) 2
+point (4, 2) 2
+point (4, 3) 2
+point (4, 4) 1
+point (4, 5) 1
+point (4, 6) 0
+plotting 5
+[(0, 0), (1, 1), (4, -1)]
+running from 0 4
+point (5, 0) 0
+point (5, 1) 1
+point (5, 2) 1
+point (5, 3) 1
+point (5, 4) 0
+plotting 6
+[(0, 0), (1, 1), (4, -1)]
+running from 0 4
+point (6, 0) 0
+point (6, 1) 1
+point (6, 2) 1
+point (6, 3) 1
+point (6, 4) 0
+plotting 7
+[(0, 0), (1, 1), (3, -1)]
+running from 0 3
+point (7, 0) 0
+point (7, 1) 1
+point (7, 2) 1
+point (7, 3) 0
+plotting 8
+[(1, 1), (3, -1)]
+running from 1 3
+point (8, 1) 1
+point (8, 2) 1
+point (8, 3) 0
+plotting 9
+[(0, 1), (3, -1)]
+running from 0 3
+point (9, 0) 1
+point (9, 1) 1
+point (9, 2) 1
+point (9, 3) 0
+plotting 10
+[(0, 1), (3, -1)]
+running from 0 3
+point (10, 0) 1
+point (10, 1) 1
+point (10, 2) 1
+point (10, 3) 0
+plotting 11
+[(0, 1), (2, -1)]
+running from 0 2
+point (11, 0) 1
+point (11, 1) 1
+point (11, 2) 0
+plotting 12
+[(0, 1), (2, -1)]
+running from 0 2
+point (12, 0) 1
+point (12, 1) 1
+point (12, 2) 0
+plotting 13
+[(0, 1), (2, -1)]
+running from 0 2
+point (13, 0) 1
+point (13, 1) 1
+point (13, 2) 0
+plotting 14
+[(0, 1), (1, -1)]
+running from 0 1
+point (14, 0) 1
+point (14, 1) 0
+plotting 15
+[(0, 1), (1, -1)]
+running from 0 1
+point (15, 0) 1
+point (15, 1) 0
+plotting 16
+[(0, 1), (1, -1)]
+running from 0 1
+point (16, 0) 1
+point (16, 1) 0
+plotting 17
+[(0, 0)]
+running from 0 0
+point (17, 0) 0
+plotting 18
+[(0, 0)]
+running from 0 0
+point (18, 0) 0
+plotting 19
+[(0, 0)]
+running from 0 0
+point (19, 0) 0

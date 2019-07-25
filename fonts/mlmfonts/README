@@ -1,0 +1,26 @@
+These are big (20 pixels) monospaced and proportional fonts in BDF format
+(used in X-windows) and koi8-r encoding (same as ASCII as far as
+U.S. English is concerned).  I wrote them for my new high-resolution laptop
+for which the existing fonts became too small.  The ASCII part is heavily
+influenced by the font "clean" by D. Schumacher (which I've been using so
+far).  For the Russian part, I attempted a different look, so that letters
+similar in Latin and Cyrillic would be easy to distinguish.  In addition to
+the monospaced fonts monoell and monosimple, there are their "slightly
+proportional" versions (propell and proposimple) for better readability when
+desired.
+
+See the file INSTALL for installation instructions and LEGALNOTICE for
+license terms (stolen from XFree86).
+
+This package can be found at http://head-cfa.harvard.edu/~maxim/mlmfonts/
+
+Enjoy,
+Maxim Markevitch <maxim@head-cfa.harvard.edu>, 20 Aug 2002
+
+
+2/21/03: Included smaller monospace fonts rusclean* (13 and 15 pixel), which
+combine two old public domain X-windows fonts (Latin glyphs from "clean",
+Cyrillic glyphs from "sq01").
+
+4/29/03: Changed several glyphs in the Russian part of the mono* and propo*
+fonts.

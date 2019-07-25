@@ -1,0 +1,46 @@
+1. Unpack the file mlmfonts.tar.gz into your personal or system-wide font
+directory, referred hereafter as DIR (on Linux, the typical system-wide
+directory is /usr/X11R6/lib/X11/fonts/). This will create a subdirectory
+DIR/MLM.
+
+2. Add this sudirectory to your personal font path by adding
+
+xset fp+ DIR/MLM
+
+to your personal .xinitrc, .xsession, .Xclients or whatever the X startup
+file is called on your system.
+
+Alternatively, for system-wide use (assuming Linux and XFree86):
+
+(a) if your XFree startup file, typically /etc/X11/XF86Config or
+/usr/X11R6/lib/X11/XF86Config, has something like
+
+    FontPath   "unix/:7100"
+
+then find the font server config file, typically /etc/X11/fs/config or
+/usr/X11R6/lib/X11/fs/config, and add DIR/MLM to the list of font
+directories there.
+
+(b) Or, if FontPath in the XF86Config file actually lists the font
+directories, add this one there.
+
+
+3. To use these fonts, e.g., for xterm, type, e.g., 'xterm -fn monosimple'
+(the aliases as defined in the file fonts.aliases are: monosimple, monoell,
+proposimple, propell, rusclean13, rusclean15).
+
+Or, for xemacs, add to your .Xdefaults (or whatever your file with X
+resources is called):
+
+XEmacs.default.attributeFont:  -*-proposimple-*
+
+(for other fonts, use your favorite font selection tool and look for 'mlm'
+and 'shumacherrus' foundry names).
+
+These fonts are in koi8-r encoding. In addition, the file fonts.alias
+creates aliases for them to be (mis)used as iso8859-1 (Western), so they may
+be selected in Netscape for that encoding as well. This is needed for
+viewing many Russian web pages.
+
+The file fonts.alias also defines bold and normal faces to be the same face
+(because I did not write bold versions).

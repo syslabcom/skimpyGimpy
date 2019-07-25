@@ -1,0 +1,32 @@
+
+ANN: SkimpyGimpy PNG canvas has Javascript mouse tracking
+
+The SkimpyGimpy PNG image canvas now can generate 
+Javascript data structures which allow HTML pages 
+to intelligently respond to mouse events over the 
+image.
+
+Please read about the SkimpyGimpy Canvas and look at
+the mouse tracking example here:
+
+http://skimpygimpy.sourceforge.net/canvas.html
+
+The SkimpyGimpy main page is here:
+
+http://skimpygimpy.sourceforge.net/
+
+BACKGROUND:
+
+SkimpyGimpy is a collection of tools for generating
+HTML visual, PNG image, and WAVE audio components
+for use in web based applications including CAPTCHA
+implementations (Completely Automated Public Turing 
+test to tell Computers and Humans Apart) and PNG 
+image creation tools with Javascript mouse tracking
+support.
+
+  I hope you like.  -- Aaron Watters
+
+===
+
+Sometimes say sometimes.

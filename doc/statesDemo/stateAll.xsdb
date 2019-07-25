@@ -1,0 +1,818 @@
+<or>
+
+    <and>
+       <s at="Capital">montgomery</s>
+       <f at="Change1990_2000">10.1</f>
+       <s at="FlowerScientific">camellia japonica</s>
+       <f at="PopPerSqMi">87.599999999999994</f>
+       <i at="Population1950">1828697</i>
+       <i at="Population1990">4040587</i>
+       <i at="Population2000">4447100</i>
+       <i at="Population2003">4500752</i>
+       <i at="Population2004">4530182</i>
+       <s at="State">alabama</s>
+       <s at="StateFlower">camelia</s>
+       <s at="StateTree">longleaf pine</s>
+       <s at="TreeScientific">pinus palustis</s>
+    </and>
+
+    <and>
+       <s at="Capital">juneau</s>
+       <f at="Change1990_2000">14.0</f>
+       <s at="FlowerScientific">myosotis alpestris subsp. asiatica</s>
+       <f at="PopPerSqMi">1.1000000000000001</f>
+       <i at="Population1950">63592</i>
+       <i at="Population1990">550043</i>
+       <i at="Population2000">626932</i>
+       <i at="Population2003">648818</i>
+       <i at="Population2004">655435</i>
+       <s at="State">alaska</s>
+       <s at="StateFlower">forget-me-not</s>
+       <s at="StateTree">sitka spruce</s>
+       <s at="TreeScientific">picea sitchensis</s>
+    </and>
+
+    <and>
+       <s at="Capital">phoenix</s>
+       <f at="Change1990_2000">40.0</f>
+       <s at="FlowerScientific">carnegia gigantea</s>
+       <f at="PopPerSqMi">45.200000000000003</f>
+       <i at="Population1950">122931</i>
+       <i at="Population1990">3665228</i>
+       <i at="Population2000">5130632</i>
+       <i at="Population2003">5580811</i>
+       <i at="Population2004">5743834</i>
+       <s at="State">arizona</s>
+       <s at="StateFlower">saguaro cactus blossom</s>
+       <s at="StateTree">palo verde</s>
+       <s at="TreeScientific">parkinsonia florida</s>
+    </and>
+
+    <and>
+       <s at="Capital">little rock</s>
+       <f at="Change1990_2000">13.699999999999999</f>
+       <s at="FlowerScientific">malus domestica</s>
+       <f at="PopPerSqMi">51.299999999999997</f>
+       <i at="Population1950">1311564</i>
+       <i at="Population1990">2350725</i>
+       <i at="Population2000">2673400</i>
+       <i at="Population2003">2725714</i>
+       <i at="Population2004">2752629</i>
+       <s at="State">arkansas</s>
+       <s at="StateFlower">apple blossom</s>
+       <s at="StateTree">lobolly pine</s>
+       <s at="TreeScientific">pinus taeda</s>
+    </and>
+
+    <and>
+       <s at="Capital">sacramento</s>
+       <f at="Change1990_2000">13.800000000000001</f>
+       <s at="FlowerScientific">eschscholzia californica</s>
+       <f at="PopPerSqMi">217.19999999999999</f>
+       <i at="Population1950">1485053</i>
+       <i at="Population1990">29760021</i>
+       <i at="Population2000">33871648</i>
+       <i at="Population2003">35484453</i>
+       <i at="Population2004">35893799</i>
+       <s at="State">california</s>
+       <s at="StateFlower">california poppy</s>
+       <s at="StateTree">california redwood</s>
+       <s at="TreeScientific">sequoia giganteum*</s>
+    </and>
+
+    <and>
+       <s at="Capital">denver</s>
+       <f at="Change1990_2000">30.600000000000001</f>
+       <s at="FlowerScientific">aquilegia caerulea</s>
+       <f at="PopPerSqMi">41.5</f>
+       <i at="Population1950">539700</i>
+       <i at="Population1990">3294394</i>
+       <i at="Population2000">4301261</i>
+       <i at="Population2003">4550688</i>
+       <i at="Population2004">4601403</i>
+       <s at="State">colorado</s>
+       <s at="StateFlower">rocky mountain columbine</s>
+       <s at="StateTree">colorado blue spruce</s>
+       <s at="TreeScientific">picea pungens</s>
+    </and>
+
+    <and>
+       <s at="Capital">hartford</s>
+       <f at="Change1990_2000">3.6000000000000001</f>
+       <s at="FlowerScientific">kalmia latifolia</s>
+       <f at="PopPerSqMi">702.89999999999998</f>
+       <i at="Population1950">908420</i>
+       <i at="Population1990">3287116</i>
+       <i at="Population2000">3405565</i>
+       <i at="Population2003">3483372</i>
+       <i at="Population2004">3503604</i>
+       <s at="State">connecticut</s>
+       <s at="StateFlower">mountain laurel</s>
+       <s at="StateTree">white oak</s>
+       <s at="TreeScientific">quercus alba</s>
+    </and>
+
+    <and>
+       <s at="Capital">dover</s>
+       <f at="Change1990_2000">17.600000000000001</f>
+       <s at="FlowerScientific">prunus persica</s>
+       <f at="PopPerSqMi">401.0</f>
+       <i at="Population1950">184735</i>
+       <i at="Population1990">666168</i>
+       <i at="Population2000">783600</i>
+       <i at="Population2003">817491</i>
+       <i at="Population2004">830364</i>
+       <s at="State">delaware</s>
+       <s at="StateFlower">peach blossom</s>
+       <s at="StateTree">american holly</s>
+       <s at="TreeScientific">ilex opaca</s>
+    </and>
+
+    <and>
+       <s at="Capital">washington</s>
+       <f at="Change1990_2000">-5.7000000000000002</f>
+       <s at="FlowerScientific">rosa 'american beauty'</s>
+       <f at="PopPerSqMi">9378.0</f>
+       <i at="Population1950">278718</i>
+       <i at="Population1990">606900</i>
+       <i at="Population2000">572059</i>
+       <i at="Population2003">563384</i>
+       <i at="Population2004">553523</i>
+       <s at="State">district of columbia</s>
+       <s at="StateFlower">american beauty rose</s>
+       <s at="StateTree">scarlet oak</s>
+       <s at="TreeScientific">quercus coccinea</s>
+    </and>
+
+    <and>
+       <s at="Capital">tallahassee</s>
+       <f at="Change1990_2000">23.5</f>
+       <s at="FlowerScientific">citrus sinensis</s>
+       <f at="PopPerSqMi">296.39999999999998</f>
+       <i at="Population1950">528542</i>
+       <i at="Population1990">12937926</i>
+       <i at="Population2000">15982378</i>
+       <i at="Population2003">17019068</i>
+       <i at="Population2004">17397161</i>
+       <s at="State">florida</s>
+       <s at="StateFlower">orange blossom</s>
+       <s at="StateTree">sabal palm</s>
+       <s at="TreeScientific">sabal palmetto</s>
+    </and>
+
+    <and>
+       <s at="Capital">atlanta</s>
+       <f at="Change1990_2000">26.399999999999999</f>
+       <s at="FlowerScientific">rosa laevigata</s>
+       <f at="PopPerSqMi">141.40000000000001</f>
+       <i at="Population1950">2216331</i>
+       <i at="Population1990">6478216</i>
+       <i at="Population2000">8186453</i>
+       <i at="Population2003">8684715</i>
+       <i at="Population2004">8829383</i>
+       <s at="State">georgia</s>
+       <s at="StateFlower">cherokee rose</s>
+       <s at="StateTree">live oak</s>
+       <s at="TreeScientific">quercus virginiana</s>
+    </and>
+
+    <and>
+       <s at="Capital">honolulu</s>
+       <f at="Change1990_2000">9.3000000000000007</f>
+       <s at="FlowerScientific">hibiscus brackenridgei</s>
+       <f at="PopPerSqMi">188.59999999999999</f>
+       <i at="Population1950">154001</i>
+       <i at="Population1990">1108229</i>
+       <i at="Population2000">1211537</i>
+       <i at="Population2003">1257608</i>
+       <i at="Population2004">1262840</i>
+       <s at="State">hawaii</s>
+       <s at="StateFlower">pua aloalo</s>
+       <s at="StateTree">kukui or candlenut</s>
+       <s at="TreeScientific">aleurites moluccana</s>
+    </and>
+
+    <and>
+       <s at="Capital">boise</s>
+       <f at="Change1990_2000">28.5</f>
+       <s at="FlowerScientific">philadelphus lewisii</s>
+       <f at="PopPerSqMi">15.6</f>
+       <i at="Population1950">161772</i>
+       <i at="Population1990">1006749</i>
+       <i at="Population2000">1293953</i>
+       <i at="Population2003">1366332</i>
+       <i at="Population2004">1393262</i>
+       <s at="State">idaho</s>
+       <s at="StateFlower">syringa mock orange</s>
+       <s at="StateTree">western white pine</s>
+       <s at="TreeScientific">pinus monticola</s>
+    </and>
+
+    <and>
+       <s at="Capital">springfield</s>
+       <f at="Change1990_2000">8.5999999999999996</f>
+       <s at="FlowerScientific">viola****</s>
+       <f at="PopPerSqMi">223.40000000000001</f>
+       <i at="Population1950">4821550</i>
+       <i at="Population1990">11430602</i>
+       <i at="Population2000">12419293</i>
+       <i at="Population2003">12653544</i>
+       <i at="Population2004">12713634</i>
+       <s at="State">illinois</s>
+       <s at="StateFlower">purple violet</s>
+       <s at="StateTree">white oak</s>
+       <s at="TreeScientific">quercus alba</s>
+    </and>
+
+    <and>
+       <s at="Capital">indianapolis</s>
+       <f at="Change1990_2000">9.6999999999999993</f>
+       <s at="FlowerScientific">lactiflora</s>
+       <f at="PopPerSqMi">169.5</f>
+       <i at="Population1950">2516462</i>
+       <i at="Population1990">5544159</i>
+       <i at="Population2000">6080485</i>
+       <i at="Population2003">6195643</i>
+       <i at="Population2004">6237569</i>
+       <s at="State">indiana</s>
+       <s at="StateFlower">peony paeonia</s>
+       <s at="StateTree">tulip tree</s>
+       <s at="TreeScientific">liriodendron tulipifera</s>
+    </and>
+
+    <and>
+       <s at="Capital">des moines</s>
+       <f at="Change1990_2000">5.4000000000000004</f>
+       <s at="FlowerScientific">rosa suffulta</s>
+       <f at="PopPerSqMi">52.399999999999999</f>
+       <i at="Population1950">2231853</i>
+       <i at="Population1990">2776755</i>
+       <i at="Population2000">2926324</i>
+       <i at="Population2003">2944062</i>
+       <i at="Population2004">2954451</i>
+       <s at="State">iowa</s>
+       <s at="StateFlower">wild prairie rose</s>
+       <s at="StateTree">oak</s>
+       <s at="TreeScientific">quercus**</s>
+    </and>
+
+    <and>
+       <s at="Capital">topeka</s>
+       <f at="Change1990_2000">8.5</f>
+       <s at="FlowerScientific">helianthus annuus</s>
+       <f at="PopPerSqMi">32.899999999999999</f>
+       <i at="Population1950">1470495</i>
+       <i at="Population1990">2477574</i>
+       <i at="Population2000">2688418</i>
+       <i at="Population2003">2723507</i>
+       <i at="Population2004">2735502</i>
+       <s at="State">kansas</s>
+       <s at="StateFlower">sunflower</s>
+       <s at="StateTree">cottonwood</s>
+       <s at="TreeScientific">populus deltoides</s>
+    </and>
+
+    <and>
+       <s at="Capital">frankfort</s>
+       <f at="Change1990_2000">9.6999999999999993</f>
+       <s at="FlowerScientific">solidago canadensis var. scabra</s>
+       <f at="PopPerSqMi">101.7</f>
+       <i at="Population1950">2147174</i>
+       <i at="Population1990">3685296</i>
+       <i at="Population2000">4041769</i>
+       <i at="Population2003">4117827</i>
+       <i at="Population2004">4145922</i>
+       <s at="State">kentucky</s>
+       <s at="StateFlower">goldenrod</s>
+       <s at="StateTree">tulip poplar</s>
+       <s at="TreeScientific">liriodendron tulipifera</s>
+    </and>
+
+    <and>
+       <s at="Capital">baton rouge</s>
+       <f at="Change1990_2000">5.9000000000000004</f>
+       <s at="FlowerScientific">magnolia grandiflora</s>
+       <f at="PopPerSqMi">102.59999999999999</f>
+       <i at="Population1950">1381625</i>
+       <i at="Population1990">4219973</i>
+       <i at="Population2000">4468976</i>
+       <i at="Population2003">4496334</i>
+       <i at="Population2004">4515770</i>
+       <s at="State">louisiana</s>
+       <s at="StateFlower">magnolia</s>
+       <s at="StateTree">bald cypress</s>
+       <s at="TreeScientific">taxodium distichum</s>
+    </and>
+
+    <and>
+       <s at="Capital">augusta</s>
+       <f at="Change1990_2000">3.7999999999999998</f>
+       <s at="FlowerScientific">pinus strobus</s>
+       <f at="PopPerSqMi">41.299999999999997</f>
+       <i at="Population1950">694466</i>
+       <i at="Population1990">1227928</i>
+       <i at="Population2000">1274923</i>
+       <i at="Population2003">1305728</i>
+       <i at="Population2004">1317253</i>
+       <s at="State">maine</s>
+       <s at="StateFlower">eastern white pine tassel and cone</s>
+       <s at="StateTree">eastern white pine</s>
+       <s at="TreeScientific">pinus strobus</s>
+    </and>
+
+    <and>
+       <s at="Capital">annapolis</s>
+       <f at="Change1990_2000">10.800000000000001</f>
+       <s at="FlowerScientific">rudbeckia hirta</s>
+       <f at="PopPerSqMi">541.89999999999998</f>
+       <i at="Population1950">1188044</i>
+       <i at="Population1990">4781468</i>
+       <i at="Population2000">5296486</i>
+       <i at="Population2003">5508909</i>
+       <i at="Population2004">5558058</i>
+       <s at="State">maryland</s>
+       <s at="StateFlower">black-eyed susan</s>
+       <s at="StateTree">white oak</s>
+       <s at="TreeScientific">quercus alba</s>
+    </and>
+
+    <and>
+       <s at="Capital">boston</s>
+       <f at="Change1990_2000">5.5</f>
+       <s at="FlowerScientific">epigaea repens</s>
+       <f at="PopPerSqMi">809.79999999999995</f>
+       <i at="Population1950">2805346</i>
+       <i at="Population1990">6016425</i>
+       <i at="Population2000">6349097</i>
+       <i at="Population2003">6433422</i>
+       <i at="Population2004">6416505</i>
+       <s at="State">massachusetts</s>
+       <s at="StateFlower">mayflower</s>
+       <s at="StateTree">american elm</s>
+       <s at="TreeScientific">ulmus americana</s>
+    </and>
+
+    <and>
+       <s at="Capital">lansing</s>
+       <f at="Change1990_2000">6.9000000000000004</f>
+       <s at="FlowerScientific">malus domestica</s>
+       <f at="PopPerSqMi">175.0</f>
+       <i at="Population1950">2420982</i>
+       <i at="Population1990">9295297</i>
+       <i at="Population2000">9938444</i>
+       <i at="Population2003">10079985</i>
+       <i at="Population2004">10112620</i>
+       <s at="State">michigan</s>
+       <s at="StateFlower">apple blossom</s>
+       <s at="StateTree">eastern white pine</s>
+       <s at="TreeScientific">pinus strobus</s>
+    </and>
+
+    <and>
+       <s at="Capital">st. paul</s>
+       <f at="Change1990_2000">12.4</f>
+       <s at="FlowerScientific">cypripedium reginae</s>
+       <f at="PopPerSqMi">61.799999999999997</f>
+       <i at="Population1950">1751394</i>
+       <i at="Population1990">4375099</i>
+       <i at="Population2000">4919479</i>
+       <i at="Population2003">5059375</i>
+       <i at="Population2004">5100958</i>
+       <s at="State">minnesota</s>
+       <s at="StateFlower">pink and white ladyslipper</s>
+       <s at="StateTree">red pine</s>
+       <s at="TreeScientific">pinus resinosa</s>
+    </and>
+
+    <and>
+       <s at="Capital">jackson</s>
+       <f at="Change1990_2000">10.5</f>
+       <s at="FlowerScientific">magnolia grandiflora</s>
+       <f at="PopPerSqMi">60.600000000000001</f>
+       <i at="Population1950">1551270</i>
+       <i at="Population1990">2573216</i>
+       <i at="Population2000">2844658</i>
+       <i at="Population2003">2881281</i>
+       <i at="Population2004">2902966</i>
+       <s at="State">mississippi</s>
+       <s at="StateFlower">magnolia</s>
+       <s at="StateTree">magnolia</s>
+       <s at="TreeScientific">magnolia***</s>
+    </and>
+
+    <and>
+       <s at="Capital">jefferson city</s>
+       <f at="Change1990_2000">9.3000000000000007</f>
+       <s at="FlowerScientific">crataegus****</s>
+       <f at="PopPerSqMi">81.200000000000003</f>
+       <i at="Population1950">3106665</i>
+       <i at="Population1990">5117073</i>
+       <i at="Population2000">5595211</i>
+       <i at="Population2003">5704484</i>
+       <i at="Population2004">5754618</i>
+       <s at="State">missouri</s>
+       <s at="StateFlower">hawthorn</s>
+       <s at="StateTree">flowering dogwood</s>
+       <s at="TreeScientific">cornus florida</s>
+    </and>
+
+    <and>
+       <s at="Capital">helena</s>
+       <f at="Change1990_2000">12.9</f>
+       <s at="FlowerScientific">lewisia rediviva</s>
+       <f at="PopPerSqMi">6.2000000000000002</f>
+       <i at="Population1950">243329</i>
+       <i at="Population1990">799065</i>
+       <i at="Population2000">902195</i>
+       <i at="Population2003">917621</i>
+       <i at="Population2004">926865</i>
+       <s at="State">montana</s>
+       <s at="StateFlower">bitterroot</s>
+       <s at="StateTree">ponderosa pine</s>
+       <s at="TreeScientific">pinus ponderosa</s>
+    </and>
+
+    <and>
+       <s at="Capital">lincoln</s>
+       <f at="Change1990_2000">8.4000000000000004</f>
+       <s at="FlowerScientific">solidago gigantea</s>
+       <f at="PopPerSqMi">22.300000000000001</f>
+       <i at="Population1950">1066300</i>
+       <i at="Population1990">1578385</i>
+       <i at="Population2000">1711263</i>
+       <i at="Population2003">1739291</i>
+       <i at="Population2004">1747214</i>
+       <s at="State">nebraska</s>
+       <s at="StateFlower">goldenrod</s>
+       <s at="StateTree">cottonwood</s>
+       <s at="TreeScientific">populus deltoides</s>
+    </and>
+
+    <and>
+       <s at="Capital">carson city</s>
+       <f at="Change1990_2000">66.299999999999997</f>
+       <s at="FlowerScientific">artemisia tridentata</s>
+       <f at="PopPerSqMi">18.199999999999999</f>
+       <i at="Population1950">42335</i>
+       <i at="Population1990">1201833</i>
+       <i at="Population2000">1998257</i>
+       <i at="Population2003">2241154</i>
+       <i at="Population2004">2334771</i>
+       <s at="State">nevada</s>
+       <s at="StateFlower">sagebrush</s>
+       <s at="StateTree">singleleaf pinyon</s>
+       <s at="TreeScientific">pinus monophylla</s>
+    </and>
+
+    <and>
+       <s at="Capital">concord</s>
+       <f at="Change1990_2000">11.4</f>
+       <s at="FlowerScientific">syringa vulgaris</s>
+       <f at="PopPerSqMi">137.80000000000001</f>
+       <i at="Population1950">411588</i>
+       <i at="Population1990">1109252</i>
+       <i at="Population2000">1235786</i>
+       <i at="Population2003">1287687</i>
+       <i at="Population2004">1299500</i>
+       <s at="State">new hampshire</s>
+       <s at="StateFlower">purple lilac</s>
+       <s at="StateTree">white birch</s>
+       <s at="TreeScientific">betula papyrifera</s>
+    </and>
+
+    <and>
+       <s at="Capital">trenton</s>
+       <f at="Change1990_2000">8.9000000000000004</f>
+       <s at="FlowerScientific">viola sororia</s>
+       <f at="PopPerSqMi">1134.5</f>
+       <i at="Population1950">1883669</i>
+       <i at="Population1990">7730188</i>
+       <i at="Population2000">8414350</i>
+       <i at="Population2003">8638396</i>
+       <i at="Population2004">8698879</i>
+       <s at="State">new jersey</s>
+       <s at="StateFlower">violet</s>
+       <s at="StateTree">northern red oak</s>
+       <s at="TreeScientific">quercus rubra</s>
+    </and>
+
+    <and>
+       <s at="Capital">santa fe</s>
+       <f at="Change1990_2000">20.100000000000001</f>
+       <s at="FlowerScientific">yucca glauca</s>
+       <f at="PopPerSqMi">15.0</f>
+       <i at="Population1950">195310</i>
+       <i at="Population1990">1515069</i>
+       <i at="Population2000">1819046</i>
+       <i at="Population2003">1874614</i>
+       <i at="Population2004">1903289</i>
+       <s at="State">new mexico</s>
+       <s at="StateFlower">yucca</s>
+       <s at="StateTree">pinyon</s>
+       <s at="TreeScientific">pinus edulis</s>
+    </and>
+
+    <and>
+       <s at="Capital">alabany</s>
+       <f at="Change1990_2000">5.5</f>
+       <s at="FlowerScientific">rosa</s>
+       <f at="PopPerSqMi">401.89999999999998</f>
+       <i at="Population1950">7268894</i>
+       <i at="Population1990">17990455</i>
+       <i at="Population2000">18976457</i>
+       <i at="Population2003">19190115</i>
+       <i at="Population2004">19227088</i>
+       <s at="State">new york</s>
+       <s at="StateFlower">rose</s>
+       <s at="StateTree">sugar maple</s>
+       <s at="TreeScientific">acer saccharum</s>
+    </and>
+
+    <and>
+       <s at="Capital">raleigh</s>
+       <f at="Change1990_2000">21.399999999999999</f>
+       <s at="FlowerScientific">cornus florida</s>
+       <f at="PopPerSqMi">165.19999999999999</f>
+       <i at="Population1950">1893810</i>
+       <i at="Population1990">6628637</i>
+       <i at="Population2000">8049313</i>
+       <i at="Population2003">8407248</i>
+       <i at="Population2004">8541221</i>
+       <s at="State">north carolina</s>
+       <s at="StateFlower">american dogwood</s>
+       <s at="StateTree">longleaf pine</s>
+       <s at="TreeScientific">pinus palustris</s>
+    </and>
+
+    <and>
+       <s at="Capital">bismarck</s>
+       <f at="Change1990_2000">0.5</f>
+       <s at="FlowerScientific">rosa arkansana</s>
+       <f at="PopPerSqMi">9.3000000000000007</f>
+       <i at="Population1950">319146</i>
+       <i at="Population1990">638800</i>
+       <i at="Population2000">642200</i>
+       <i at="Population2003">633837</i>
+       <i at="Population2004">634366</i>
+       <s at="State">north dakota</s>
+       <s at="StateFlower">wild prairie rose</s>
+       <s at="StateTree">american elm</s>
+       <s at="TreeScientific">ulmus americana</s>
+    </and>
+
+    <and>
+       <s at="Capital">columbus</s>
+       <f at="Change1990_2000">4.7000000000000002</f>
+       <s at="FlowerScientific">dianthus caryophyllus</s>
+       <f at="PopPerSqMi">277.30000000000001</f>
+       <i at="Population1950">4157545</i>
+       <i at="Population1990">10847115</i>
+       <i at="Population2000">11353140</i>
+       <i at="Population2003">11435798</i>
+       <i at="Population2004">11459011</i>
+       <s at="State">ohio</s>
+       <s at="StateFlower">scarlet carnation</s>
+       <s at="StateTree">buckeye</s>
+       <s at="TreeScientific">aesculus glabra</s>
+    </and>
+
+    <and>
+       <s at="Capital">oklahoma city</s>
+       <f at="Change1990_2000">9.6999999999999993</f>
+       <s at="FlowerScientific">phoradendron leucarpum</s>
+       <f at="PopPerSqMi">50.299999999999997</f>
+       <i at="Population1950">7903911</i>
+       <i at="Population1990">3145585</i>
+       <i at="Population2000">3450654</i>
+       <i at="Population2003">3511532</i>
+       <i at="Population2004">3523553</i>
+       <s at="State">oklahoma</s>
+       <s at="StateFlower">mistletoe</s>
+       <s at="StateTree">redbud</s>
+       <s at="TreeScientific">cercis canadensis</s>
+    </and>
+
+    <and>
+       <s at="Capital">salem</s>
+       <f at="Change1990_2000">20.399999999999999</f>
+       <s at="FlowerScientific">mahonia aquifolium</s>
+       <f at="PopPerSqMi">35.600000000000001</f>
+       <i at="Population1950">413536</i>
+       <i at="Population1990">2842321</i>
+       <i at="Population2000">3421399</i>
+       <i at="Population2003">3559596</i>
+       <i at="Population2004">3594586</i>
+       <s at="State">oregon</s>
+       <s at="StateFlower">oregon grape</s>
+       <s at="StateTree">douglas fir</s>
+       <s at="TreeScientific">pseudotsuga menziesii</s>
+    </and>
+
+    <and>
+       <s at="Capital">harrisburg</s>
+       <f at="Change1990_2000">3.3999999999999999</f>
+       <s at="FlowerScientific">kalmia latifolia</s>
+       <f at="PopPerSqMi">274.0</f>
+       <i at="Population1950">6302115</i>
+       <i at="Population1990">11881643</i>
+       <i at="Population2000">12281054</i>
+       <i at="Population2003">12365455</i>
+       <i at="Population2004">12406292</i>
+       <s at="State">pennsylvania</s>
+       <s at="StateFlower">mountain laurel</s>
+       <s at="StateTree">eastern hemlock</s>
+       <s at="TreeScientific">tsuga canadensis</s>
+    </and>
+
+    <and>
+       <s at="Capital">providence</s>
+       <f at="Change1990_2000">4.5</f>
+       <s at="FlowerScientific">viola palmata</s>
+       <f at="PopPerSqMi">1003.2</f>
+       <i at="Population1950">428556</i>
+       <i at="Population1990">1003464</i>
+       <i at="Population2000">1048319</i>
+       <i at="Population2003">1076164</i>
+       <i at="Population2004">1080632</i>
+       <s at="State">rhode island</s>
+       <s at="StateFlower">violet</s>
+       <s at="StateTree">red maple</s>
+       <s at="TreeScientific">acer rubrum</s>
+    </and>
+
+    <and>
+       <s at="Capital">columbia</s>
+       <f at="Change1990_2000">15.1</f>
+       <s at="FlowerScientific">gelsemium sempervirens</s>
+       <f at="PopPerSqMi">133.19999999999999</f>
+       <i at="Population1950">1340316</i>
+       <i at="Population1990">3486703</i>
+       <i at="Population2000">4012012</i>
+       <i at="Population2003">4147152</i>
+       <i at="Population2004">4198068</i>
+       <s at="State">south carolina</s>
+       <s at="StateFlower">yellow jessamine</s>
+       <s at="StateTree">palmetto</s>
+       <s at="TreeScientific">sabal palmetto</s>
+    </and>
+
+    <and>
+       <s at="Capital">pierre</s>
+       <f at="Change1990_2000">8.5</f>
+       <s at="FlowerScientific">anemone patens var. multifida</s>
+       <f at="PopPerSqMi">9.9000000000000004</f>
+       <i at="Population1950">401570</i>
+       <i at="Population1990">696004</i>
+       <i at="Population2000">754844</i>
+       <i at="Population2003">764309</i>
+       <i at="Population2004">770883</i>
+       <s at="State">south dakota</s>
+       <s at="StateFlower">pasque flower</s>
+       <s at="StateTree">black hills spruce</s>
+       <s at="TreeScientific">picea glauca</s>
+    </and>
+
+    <and>
+       <s at="Capital">nashville</s>
+       <f at="Change1990_2000">16.699999999999999</f>
+       <s at="FlowerScientific">iris germanica</s>
+       <f at="PopPerSqMi">138.0</f>
+       <i at="Population1950">2020616</i>
+       <i at="Population1990">4877185</i>
+       <i at="Population2000">5689283</i>
+       <i at="Population2003">5841748</i>
+       <i at="Population2004">5900962</i>
+       <s at="State">tennessee</s>
+       <s at="StateFlower">iris</s>
+       <s at="StateTree">tulip poplar</s>
+       <s at="TreeScientific">liriodendron tulipifera</s>
+    </and>
+
+    <and>
+       <s at="Capital">austin</s>
+       <f at="Change1990_2000">22.800000000000001</f>
+       <s at="FlowerScientific">lupinus spp.</s>
+       <f at="PopPerSqMi">79.599999999999994</f>
+       <i at="Population1950">3048710</i>
+       <i at="Population1990">16986510</i>
+       <i at="Population2000">20851820</i>
+       <i at="Population2003">22118509</i>
+       <i at="Population2004">22490022</i>
+       <s at="State">texas</s>
+       <s at="StateFlower">texas bluebonnet</s>
+       <s at="StateTree">pecan</s>
+       <s at="TreeScientific">carya illinoinensis</s>
+    </and>
+
+    <and>
+       <s at="Capital">salt lake city</s>
+       <f at="Change1990_2000">29.600000000000001</f>
+       <s at="FlowerScientific">calochortus</s>
+       <f at="PopPerSqMi">27.199999999999999</f>
+       <i at="Population1950">276749</i>
+       <i at="Population1990">1722850</i>
+       <i at="Population2000">2233169</i>
+       <i at="Population2003">2351467</i>
+       <i at="Population2004">2389039</i>
+       <s at="State">utah</s>
+       <s at="StateFlower">sego lily</s>
+       <s at="StateTree">blue spruce</s>
+       <s at="TreeScientific">picea pungens</s>
+    </and>
+
+    <and>
+       <s at="Capital">montpelier</s>
+       <f at="Change1990_2000">8.1999999999999993</f>
+       <s at="FlowerScientific">trifolium pratense 1895</s>
+       <f at="PopPerSqMi">65.799999999999997</f>
+       <i at="Population1950">343641</i>
+       <i at="Population1990">562758</i>
+       <i at="Population2000">608827</i>
+       <i at="Population2003">619107</i>
+       <i at="Population2004">621394</i>
+       <s at="State">vermont</s>
+       <s at="StateFlower">red clover</s>
+       <s at="StateTree">sugar maple</s>
+       <s at="TreeScientific">acer saccharum</s>
+    </and>
+
+    <and>
+       <s at="Capital">richmond</s>
+       <f at="Change1990_2000">14.4</f>
+       <s at="FlowerScientific">cornus florida</s>
+       <f at="PopPerSqMi">178.80000000000001</f>
+       <i at="Population1950">1854184</i>
+       <i at="Population1990">6187358</i>
+       <i at="Population2000">7078515</i>
+       <i at="Population2003">7386330</i>
+       <i at="Population2004">7459827</i>
+       <s at="State">virginia</s>
+       <s at="StateFlower">flowering dogwood</s>
+       <s at="StateTree">flowering dogwood</s>
+       <s at="TreeScientific">cornus florida 1</s>
+    </and>
+
+    <and>
+       <s at="Capital">olympia</s>
+       <f at="Change1990_2000">21.100000000000001</f>
+       <s at="FlowerScientific">rhododendron macrophyllum</s>
+       <f at="PopPerSqMi">88.599999999999994</f>
+       <i at="Population1950">518103</i>
+       <i at="Population1990">4866692</i>
+       <i at="Population2000">5894121</i>
+       <i at="Population2003">6131445</i>
+       <i at="Population2004">6203788</i>
+       <s at="State">washington</s>
+       <s at="StateFlower">coast rhododendron</s>
+       <s at="StateTree">western hemlock</s>
+       <s at="TreeScientific">tsuga heterophylla</s>
+    </and>
+
+    <and>
+       <s at="Capital">charleston</s>
+       <f at="Change1990_2000">0.80000000000000004</f>
+       <s at="FlowerScientific">rhododendron maximum</s>
+       <f at="PopPerSqMi">75.099999999999994</f>
+       <i at="Population1950">958800</i>
+       <i at="Population1990">1793477</i>
+       <i at="Population2000">1808344</i>
+       <i at="Population2003">1810354</i>
+       <i at="Population2004">1815354</i>
+       <s at="State">west virginia</s>
+       <s at="StateFlower">rhododendron</s>
+       <s at="StateTree">sugar maple</s>
+       <s at="TreeScientific">acer saccharum</s>
+    </and>
+
+    <and>
+       <s at="Capital">madison</s>
+       <f at="Change1990_2000">9.5999999999999996</f>
+       <s at="FlowerScientific">viola sororia</s>
+       <f at="PopPerSqMi">98.799999999999997</f>
+       <i at="Population1950">2069042</i>
+       <i at="Population1990">4891769</i>
+       <i at="Population2000">5363675</i>
+       <i at="Population2003">5472299</i>
+       <i at="Population2004">5509026</i>
+       <s at="State">wisconsin</s>
+       <s at="StateFlower">wood violet</s>
+       <s at="StateTree">sugar maple</s>
+       <s at="TreeScientific">acer saccharum</s>
+    </and>
+
+    <and>
+       <s at="Capital">cheyenne</s>
+       <f at="Change1990_2000">8.9000000000000004</f>
+       <s at="FlowerScientific">castilleja linariifolia</s>
+       <f at="PopPerSqMi">5.0999999999999996</f>
+       <i at="Population1950">92531</i>
+       <i at="Population1990">453588</i>
+       <i at="Population2000">493782</i>
+       <i at="Population2003">501242</i>
+       <i at="Population2004">506529</i>
+       <s at="State">wyoming</s>
+       <s at="StateFlower">indian paintbrush</s>
+       <s at="StateTree">plains cottonwood</s>
+       <s at="TreeScientific">poplus deltoides subsp. monilifera</s>
+    </and>
+</or>

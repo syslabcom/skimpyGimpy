@@ -1,0 +1,46 @@
+<html>
+<head>
+<title>US state test for mouse tracking</title>
+<script src="canvas.js"></script>
+
+<script src="states.js"></script>
+
+<script>
+function onState(alertString, x, y) {
+	var span = document.getElementById("myspan");
+	//span.innerHTML = alertString+" "+x+" "+y;
+	var newHTML = alertString;
+	var stateName = alertString.toLowerCase();
+	if (alertString!="out") {
+	newHTML += " <br> <img src=\""+stateName+".png\">";
+	}
+	//newHTML += " "+stateName+" <br> <img src=\""+stateName+".png\">";
+	var stateInfo = States[stateName];
+	if (stateInfo) {
+		newHTML+= "<table border>"+
+			"<tr> <th>Capital</th> <td>"+stateInfo["Capital"]+"</td> </tr>"+
+			"<tr> <th>StateFlower</th> <td>"+stateInfo['StateFlower']+"</td> </tr>"+
+			"</table>";
+	} else {
+		newHTML+= "<br>(not a state)";
+	}
+	span.innerHTML = newHTML;
+}
+</script>
+
+</head>
+<body>
+
+<center>
+<h1>US state test for mouse tracking</h1>
+
+<img src="AllStates.png" id="AllStates" width="500" height="300">
+
+<script src="AllStates.js"></script>
+
+
+<br>
+<span id="myspan">info here</span>
+
+</center>
+</body>
