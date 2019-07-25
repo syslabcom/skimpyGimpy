@@ -9,7 +9,7 @@ http://www.libpng.org/pub/png/spec/1.2/
 import zlib, math, random
 
 PNGSIGNATURE = [137, 80, 78, 71, 13, 10, 26, 10]
-PNGSIGSTRING = "".join( map(chr, PNGSIGNATURE))
+PNGSIGSTRING = "".join(map(chr, PNGSIGNATURE))
 
 NOFILTER = 0
 SUBFILTER = 1
@@ -30,7 +30,7 @@ for n in range(256):
 def pngCRC(buf):
     c = 0xffffffff
     for char in buf:
-        bufn = ord(char)
+        bufn = char
         index = (c ^ bufn) & 0xff
         c = PNGCRCTABLE[index]^(c >> 8)
     return c ^ 0xffffffff
@@ -89,7 +89,7 @@ class PNGdata:
             chr(interlaceMethod),
             ]
         d = "".join(L)
-        ch = Chunk("IHDR", d)
+        ch = Chunk(b"IHDR", d)
         this.addChunk(ch)
     def addPLTE(this, paletteSequence):
         if len(paletteSequence)<1:
@@ -100,30 +100,31 @@ class PNGdata:
             entry = chr(r)+chr(g)+chr(b)
             L.append(entry)
         d = "".join(L)
-        ch = Chunk("PLTE", d)
+        ch = Chunk(b"PLTE", d)
         this.addChunk(ch)
     def addtRNS(this, index=0):
         "specify that palette index is fully transparent"
-        ch = Chunk("tRNS", chr(index))
+        ch = Chunk(b"tRNS", chr(index))
         this.addChunk(ch)
     def addIDAT(this, filteredAndCompressedData):
-        ch = Chunk("IDAT", filteredAndCompressedData)
+        ch = Chunk(b"IDAT", filteredAndCompressedData)
         this.addChunk(ch)
     def addFilteredData(this, filteredData):
         # XXX ???
-        filteredAndCompressedData = zlib.compress(filteredData, this.compresslevel)
+        filteredAndCompressedData = zlib.compress(
+            filteredData.encode('latin1'), this.compresslevel)
         this.addIDAT(filteredAndCompressedData)
     def addIEND(this):
         d = ""
-        ch = Chunk("IEND", d)
+        ch = Chunk(b"IEND", d)
         this.addChunk(ch)
     def addChunk(this, chunk):
         this.chunks.append(chunk)
     def OutputString(this):
         chunkStrings = [c.OutputString() for c in this.chunks]
-        L = [PNGSIGSTRING]
+        L = [PNGSIGSTRING.encode('latin1')]
         L.extend(chunkStrings)
-        return "".join(L)
+        return b"".join(L)
 
 class IndexedImage:
     width = height = 0
@@ -248,11 +249,15 @@ class Chunk:
         this.length = len(data)
         this.crc = crc
     def OutputString(this):
-        payload = this.typeCode+this.data
+        if type(this.data) == bytes:
+            data = this.data
+        else:
+            data = this.data.encode('latin1')
+        payload = this.typeCode + data
         crc = pngCRC(payload)
-        crcStr = networkIntToString(crc)
-        lenStr = networkIntToString(len(this.data))
-        result = "%s%s%s" % (lenStr, payload, crcStr)
+        crcStr = networkIntToString(crc).encode('latin1')
+        lenStr = networkIntToString(len(data)).encode('latin1')
+        result = lenStr + payload + crcStr
         #prt "crc=", crc
         #if this.crc and this.crc!=crc:
             #prt "   EXPECTED CRC DOESN'T MATCH ON"
@@ -305,7 +310,7 @@ def blackBox(size=40, outfile="black.png", palette=True, transparent=True):
     for i in range(size):
         scanline = filterFlag + (c0*i)+(c1*(size-i))
         L.append(scanline)
-    data = "".join(L)
+    data = b"".join(L)
     png = PNGdata()
     if palette:
         png.addIHDR(size, size)

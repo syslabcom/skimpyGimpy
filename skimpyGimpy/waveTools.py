@@ -489,7 +489,7 @@ def samplesToFile(filename, samples, sampwidth=2):
 
 def samplesToString(samples, sampwidth=2):
     import io, wave
-    f0 = io.StringIO()
+    f0 = io.BytesIO()
     f = wave.open(f0, "wb")
     samplesToFileObject(f, samples, sampwidth)
     result = f0.getvalue()
@@ -513,7 +513,7 @@ def samplesToFileObject(f, samples, sampwidth=2):
         outframes = list(map(toWave16frame, samples))
     elif sampwidth==1:
         outframes = list(map(chr, list(map(int, list(map(round, samples))))))
-    framestring = "".join(outframes)
+    framestring = "".join(outframes).encode('latin1')
     #print samples[:100]
     #print repr(framestring[:100])
     f.writeframes(framestring)
@@ -570,6 +570,7 @@ class LettersIndex:
     def addLetterFile(this, letter, filename):
         this.lettersToPath[letter] = filename
     def getAppx(this, letter):
+        letter = letter.encode('latin1')
         ls = this.lettersToAppx
         if letter in ls:
             return ls[letter]
