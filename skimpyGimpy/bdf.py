@@ -177,8 +177,8 @@ class font:
         result = this.charMap[char] = glyph(name, this.xwidth, this.yheight, this.dx, this.dy)
         return result
     def loadFilePath(this, path):
-        f = file(path)
-        this.loadFile(f)
+        with open(path, 'r') as f:
+            this.loadFile(f)
     def loadFile(this, f):
         lines = f.readlines()
         this.loadLines(lines)

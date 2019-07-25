@@ -559,8 +559,8 @@ class LettersIndex:
         "load compressed representation of this (all at once)"
         # XXX could be made lazy using zipfile...
         import marshal, zlib
-        infile = file(zipFileName, "rb")
-        rpz = infile.read()
+        with open(zipFileName, "rb") as infile:
+            rpz = infile.read()
         rp = zlib.decompress(rpz)
         D = marshal.loads(rp)
         for (letter, points) in list(D.items()):
